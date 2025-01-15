@@ -3,8 +3,7 @@
 ## Current status
 
 1. **[DONE]** Initialization
-1. **[IN PROGRESS]** System Design
-1. **[TODO]** Development
+1. **[IN PROGRESS]** System Design and Development
 1. **[TODO]** Testing and Validation
 
 ## Index
