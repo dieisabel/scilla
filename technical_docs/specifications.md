@@ -5,6 +5,7 @@
 | Revision | Note | Date | Author |
 | - | - | - | - |
 | v0.1 | Initial version | 02/15/2025 | dieisabel |
+| v0.2 | Change analog bandwidth and input impedance requirements for oscilloscope | 03/01/2025 | dieisabel |
 
 ## Content
 
@@ -82,9 +83,9 @@ Specification is presented on [Table 1](#table-1-adc-block-specification).
 
 | Problem space requirement (Oscilloscope) | Solution space requirement (ADC) |
 | - | - |
-| Input channels: at least 2 analog channels | Input channels: at least 2 analog input channels |
-| Analog bandwidth: up to 1MHz | Sampling rate: 8MHz |
-| Input impedance: 1MOhms | Input impedance: 1MOhms |
+| Input channels: at least 2 analog channels | Input channels: at least 2 input channels |
+| Analog bandwidth: up to 150KHz | Sampling rate: up to 1MHz |
+| Input impedance: very large, suppose 10MOhms | Input impedance: very large, suppose 10MOhms |
 
 Block diagram is presented on [Diagram 2](#diagram-2-adc-system-block).
 

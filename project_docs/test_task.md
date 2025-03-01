@@ -5,6 +5,7 @@
 | Revision | Note | Date | Author |
 | - | - | - | - |
 | v0.1 | Initial version | 12/25/2024 | dieisabel |
+| v0.2 | Change analog bandwidth and input impedance requirements for oscilloscope | 03/01/2025 | dieisabel |
 
 ## Content
 
@@ -51,8 +52,8 @@ Functional requirements describe what the device must do.
 
 Device must implement oscilloscope functionality:
 1. **Input channels:** at least 2 analog channels
-1. **Analog bandwidth:** up to 1MHz
-1. **Input impedance:** 1MOhms
+1. **Analog bandwidth:** up to 150KHz
+1. **Input impedance:** very large, suppose 10MOhms
 1. **Modes:** edge trigger, normal, one-time
 1. **Math functions:** addition, substraction, integration, FFT
 
