@@ -12,6 +12,7 @@
     - [2.1 Project Documentation](#21-project-documentation)
     - [2.2 Technical Documentation](#22-technical-documentation)
     - [2.3 Other](#23-other)
+- [3. License](#3-license)
 
 ## 1. Introduction
 
@@ -32,3 +33,7 @@ This repository contains Scilla project documentation. All files are written in 
 ### 2.3 Other
 
 1. [Documentation Guidelines](documentation_guidelines.md)
+
+## 3. License
+
+Project is licensed under MIT license.
