@@ -12,7 +12,7 @@ This repository contains Scilla project.
 
 ## 2. Docs
 
-Project documentation located in `docs/` directory.
+Project documentation located in `docs/` directory. Check [docs/README.md](docs/README.md) for more information.
 
 ## 3. License
 
