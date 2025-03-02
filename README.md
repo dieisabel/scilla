@@ -1,39 +1,19 @@
-# Scilla Documentation
-
-## Other Scilla repositories
-
-- [Scilla Firmware](https://github.com/dieisabel/scilla-firmware)
-- [Scilla Model](https://github.com/dieisabel/scilla-model)
+# Scilla
 
 ## Content
 
 - [1. Introduction](#1-introduction)
-- [2. Index](#2-index)
-    - [2.1 Project Documentation](#21-project-documentation)
-    - [2.2 Technical Documentation](#22-technical-documentation)
-    - [2.3 Other](#23-other)
+- [2. Docs](#2-docs)
 - [3. License](#3-license)
 
 ## 1. Introduction
 
-This repository contains Scilla project documentation. All files are written in Markdown format. For creating diagrams PlantUML is used.
+This repository contains Scilla project.
 
-## 2. Index
+## 2. Docs
 
-### 2.1 Project Documentation
-
-1. [Test task](project_docs/test_task.md)
-1. [Plan](project_docs/plan.md)
-1. [Current status](project_docs/status.md)
-
-### 2.2 Technical Documentation
-
-1. [Specifications](technical_docs/specifications.md)
-
-### 2.3 Other
-
-1. [Documentation Guidelines](documentation_guidelines.md)
+Project documentation located in `docs/` directory.
 
 ## 3. License
 
-Project is licensed under MIT license.
+Project is licensed under [MIT license](LICENSE.md).
