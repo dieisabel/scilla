@@ -6,6 +6,7 @@
 | - | - | - | - |
 | v1.0 | Initial version | 03/01/2025 | dieisabel |
 | v1.1 | Made separate statuses of phase 2 for oscilloscope, signal generator and control panel | 05/03/2025 | dieisabel |
+| v1.2 | Change paths to implemented oscilloscope phase 2 deliverables | 05/03/2025 | dieisabel |
 
 ## Content
 
@@ -75,8 +76,8 @@ System Design and Development deliverables status is presented in [Table 5](#tab
 
 | Deliverables | Oscilloscope | Signal Generator | Control Panel |
 | - | - | - | - |
-| High-level system architecture document | [Specifications: 3. Oscilloscope](../technical_docs/specifications.md#3-oscilloscope) | - | - |
-| Requirements specifications document | [Specifications: 3. Oscilloscope](../technical_docs/specifications.md#3-oscilloscope) | - | - |
+| High-level system architecture document | [Solution Concept: 4. Oscilloscope](../technical_docs/solution.md#4-oscilloscope) | - | - |
+| Requirements specifications document | [Solution Concept: 4. Oscilloscope](../technical_docs/solution.md#4-oscilloscope) | - | - |
 | Operation algorithms documents | - | - | - |
 | Software architecture document | - | - | - |
 | Hardware architecture document | - | - | - |
