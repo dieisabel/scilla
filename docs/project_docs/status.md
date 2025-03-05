@@ -7,6 +7,7 @@
 | v1.0 | Initial version | 03/01/2025 | dieisabel |
 | v1.1 | Made separate statuses of phase 2 for oscilloscope, signal generator and control panel | 05/03/2025 | dieisabel |
 | v1.2 | Change paths to implemented oscilloscope phase 2 deliverables | 05/03/2025 | dieisabel |
+| v1.3 | Add debt chapter with some debt in it | 05/03/2025 | dieisabel |
 
 ## Content
 
@@ -17,6 +18,7 @@
     - [2.3 Testing and Validation](#23-testing-and-validation)
 - [3. Resources](#3-resources)
     - [3.1 Resource 1](#31-resource-1)
+- [4. Debt](#4-debt)
 
 ## 1. Introduction
 
@@ -108,3 +110,11 @@ Testing and Validation phase deliverables status is presented in [Table 7](#tabl
 ### 3.1 Resource 1
 
 [Link to plan](plan.md)
+
+## 4. Debt
+
+1. Give more info about project in main README:
+    1. purpose
+    1. main functionality
+1. Describe architecture abstraction layers: system, module, component
+1. Add setup chapter which explains how to setup VS Code environment for writing/viewing documentation
