@@ -23,7 +23,7 @@ This directory contains Scilla documentation. All files are written in Markdown 
 
 ### 2.2 Technical Documentation
 
-1. [Specifications](technical_docs/specifications.md)
+1. [Solution Concept](technical_docs/solution.md)
 
 ### 2.3 Other
 

@@ -1,4 +1,4 @@
-# Technical Specifications
+# Solution Concept
 
 ## Revisions
 
@@ -7,36 +7,68 @@
 | v0.1 | Initial version | 02/15/2025 | dieisabel |
 | v0.2 | Change analog bandwidth and input impedance requirements for oscilloscope | 03/01/2025 | dieisabel |
 | v0.3 | Remove resources chapter | 03/02/2025 | dieisabel |
+| v0.4 | Change page name to "Solution Concept" and add system model | 05/03/2025 | dieisabel |
 
 ## Content
 
 - [1. Introduction](#1-introduction)
 - [2. Terminology](#2-terminology)
-- [3. Oscilloscope](#3-oscilloscope)
-   - [3.1 Data gathering](#31-data-gathering)
-      - [3.1.1 ADC](#311-adc)
-      - [3.1.2 Acquisition](#312-acquisition)
-      - [3.1.3 System Block](#313-system-block)
-   - [3.2 Processing](#32-processing)
+- [3. System Model](#3-system-model)
+- [4. Oscilloscope](#4-oscilloscope)
+   - [4.1 Data gathering](#41-data-gathering)
+      - [4.1.1 ADC](#411-adc)
+      - [4.1.2 Acquisition](#412-acquisition)
+      - [4.1.3 System Block](#413-system-block)
+   - [4.2 Processing](#42-processing)
 
 ## 1. Introduction
 
-This document contains technical specifications. Text is written in English, Markdown format.
+This document contains solution concept. Text is written in English, Markdown format.
 
 ## 2. Terminology
 
 ADC (Analog-Digital-Converter) - device that samples continious signals
 
-## 3. Oscilloscope
+## 3. System Model
+
+System model is presented on [Diagram 1](#diagram-1-system-model).
+
+##### Diagram 1: system model
+
+```plantuml
+@startuml
+
+interface input_signal as "Input Signal"
+interface output_signal as "Output Signal"
+interface control_data as "Control Data"
+
+component oscilloscope as "Oscilloscope"
+component signal_generator as "Signal Generator"
+component control_panel as "Control Panel"
+
+input_signal -right-> oscilloscope
+oscilloscope -right-> control_panel
+control_panel -left-> oscilloscope
+
+control_data -down-> control_panel
+
+control_panel -right-> signal_generator
+signal_generator -left-> control_panel
+signal_generator -right-> output_signal
+
+@enduml
+```
+
+## 4. Oscilloscope
 
 In the real world oscilloscope main tasks are:
 1. show a plot of a signal
 1. analyze certain properties of a signal
 1. apply certain operations to signal and show result
 
-Oscilloscope system block is presented in [Diagram 1](#diagram-1-oscilloscope-system-block).
+Oscilloscope system block is presented in [Diagram 2](#diagram-2-oscilloscope-system-block).
 
-##### Diagram 1: oscilloscope system block
+##### Diagram 2: oscilloscope system block
 
 ```plantuml
 @startuml
@@ -64,9 +96,9 @@ we scope oscilloscope tasks only to data gathering and data processing.
 Every task will be explained below in separate chapters and in the end of
 this chapter there will be presented a oscilloscope system block.
 
-### 3.1 Data gathering
+### 4.1 Data gathering
 
-#### 3.1.1 ADC
+#### 4.1.1 ADC
 
 The signal is modeled as a function $ V(t) $, where $ V $ - voltage, $ t $ - time.
 They are modeled as **continious** signal. To process it we need to
@@ -87,9 +119,9 @@ Specification is presented on [Table 1](#table-1-adc-block-specification).
 | Analog bandwidth: up to 150KHz | Sampling rate: up to 1MHz |
 | Input impedance: very large, suppose 10MOhms | Input impedance: very large, suppose 10MOhms |
 
-Block diagram is presented on [Diagram 2](#diagram-2-adc-system-block).
+Block diagram is presented on [Diagram 3](#diagram-3-adc-system-block).
 
-##### Diagram 2: ADC system block
+##### Diagram 3: ADC system block
 
 ```plantuml
 @startuml
@@ -104,14 +136,14 @@ adc -right-> output : digital
 @enduml
 ```
 
-#### 3.1.2 Acquisition
+#### 4.1.2 Acquisition
 
 ADC samples signal continiously. To synchronize data acquisition with trigger we need
 separate acquisition block that will start storing data after trigger signal.
 Acqusition block stores a vector of data with some size $ N $ and gives it to
-other block. System diagram is presented in [Diagram 3](#diagram-3-acquisition-system-block).
+other block. System diagram is presented in [Diagram 4](#diagram-4-acquisition-system-block).
 
-##### Diagram 3: acquisition system block
+##### Diagram 4: acquisition system block
 
 ```plantuml
 @startuml
@@ -136,11 +168,11 @@ Specification is presented on [Table 2](#table-2-acquisition-specification).
 | - | - |
 | Modes: edge trigger, normal, one-time | Trigger modes: edge trigger, normal, one-time |
 
-#### 3.1.3 System Block
+#### 4.1.3 System Block
 
-Data gathering system block is presented on [Diagram 4](#diagram-4-data-gathering-system-block).
+Data gathering system block is presented on [Diagram 5](#diagram-5-data-gathering-system-block).
 
-#### Diagram 4: data gathering system block
+#### Diagram 5: data gathering system block
 
 ```plantuml
 @startuml
@@ -165,13 +197,13 @@ parameters -down-> data_gathering
 @enduml
 ```
 
-### 3.2 Processing
+### 4.2 Processing
 
 After data gathering block can process data. Per technical task oscilloscope must have a support
 for math functions: addition, substraction, integration, FFT. System block for processing is
-presented on [Diagram 5](#diagram-5-oscilloscope-processing-subblock).
+presented on [Diagram 6](#diagram-6-oscilloscope-processing-subblock).
 
-#### Diagram 5: oscilloscope processing subblock
+#### Diagram 6: oscilloscope processing subblock
 
 ```plantuml
 @startuml
