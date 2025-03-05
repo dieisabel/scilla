@@ -5,6 +5,7 @@
 | Revision | Note | Date | Author |
 | - | - | - | - |
 | v1.0 | Initial version | 03/01/2025 | dieisabel |
+| v1.1 | Made separate statuses of phase 2 for oscilloscope, signal generator and control panel | 05/03/2025 | dieisabel |
 
 ## Content
 
@@ -58,33 +59,29 @@ System Design and Development activities status is presented in [Table 4](#table
 
 ##### Table 4: System Design and Development activities status
 
-| Activity | Status |
-| - | - |
-| Design the high-level system architecture | Only Oscilloscope |
-| Define requirements specifications | Only Oscilloscope |
-| Design operation algorithms | Only Oscilloscope: ADC |
-| Design software and hardware architectures | - |
-| Design testing documentation | - |
-| Produce hardware | - |
-| Develop software | - |
+| Activity | Oscilloscope | Signal Generator | Control Panel |
+| - | - | - | - |
+| Design the high-level system architecture | Done | Plan | Plan |
+| Define requirements specifications | Done | Plan | Plan |
+| Design operation algorithms | Only ADC block | Plan | Plan |
+| Design software and hardware architectures | In progress | Plan | Plan |
+| Design testing documentation | In progress | Plan | Plan |
+| Produce hardware | Plan | Plan | Plan |
+| Develop software | Plan | Plan | Plan |
 
 System Design and Development deliverables status is presented in [Table 5](#table-5-system-design-and-development-deliverables-status).
 
 ##### Table 5: System Design and Development deliverables status
 
-| Deliverables | Location |
-| - | - |
-| High-level system architecture document | [Specifications](../technical_docs/specifications.md) |
-| Requirements specifications document | [Specifications](../technical_docs/specifications.md) |
-| Operation algorithms documents | - |
-| Software architecture document | - |
-| Hardware architecture document | - |
-| Testing document | - |
-| Fully functional device | - |
-| High-level system architecture document | - |
-| High-level system architecture document | - |
-| High-level system architecture document | - |
-| High-level system architecture document | - |
+| Deliverables | Oscilloscope | Signal Generator | Control Panel |
+| - | - | - | - |
+| High-level system architecture document | [Specifications: 3. Oscilloscope](../technical_docs/specifications.md#3-oscilloscope) | - | - |
+| Requirements specifications document | [Specifications: 3. Oscilloscope](../technical_docs/specifications.md#3-oscilloscope) | - | - |
+| Operation algorithms documents | - | - | - |
+| Software architecture document | - | - | - |
+| Hardware architecture document | - | - | - |
+| Testing document | - | - | - |
+| Fully functional device | - | - | - |
 
 ### 2.3 Testing and Validation
 
