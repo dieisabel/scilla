@@ -24,6 +24,7 @@ This directory contains Scilla documentation. All files are written in Markdown 
 ### 2.2 Technical Documentation
 
 1. [Solution Concept](technical_docs/solution.md)
+1. [Software Architecture](technical_docs/software_architecture.md)
 
 ### 2.3 Other
 
