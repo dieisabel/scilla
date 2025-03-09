@@ -5,7 +5,8 @@
 	// List of extensions which should be recommended for users of this workspace.
 	"recommendations": [
 		"shd101wyy.markdown-preview-enhanced",
-		"jebbs.plantuml"
+		"jebbs.plantuml",
+		"thinker.new-file-template"
 
 	],
 	// List of extensions recommended by VS Code that should not be recommended for users of this workspace.
