@@ -5,9 +5,10 @@
 | Revision | Note | Date | Author |
 | - | - | - | - |
 | v1.0 | Initial version | 03/01/2025 | dieisabel |
-| v1.1 | Made separate statuses of phase 2 for oscilloscope, signal generator and control panel | 05/03/2025 | dieisabel |
-| v1.2 | Change paths to implemented oscilloscope phase 2 deliverables | 05/03/2025 | dieisabel |
-| v1.3 | Add debt chapter with some debt in it | 05/03/2025 | dieisabel |
+| v1.1 | Made separate statuses of phase 2 for oscilloscope, signal generator and control panel | 03/05/2025 | dieisabel |
+| v1.2 | Change paths to implemented oscilloscope phase 2 deliverables | 03/05/2025 | dieisabel |
+| v1.3 | Add debt chapter with some debt in it | 03/05/2025 | dieisabel |
+| v1.4 | Update debt about writing setup chapter and update previous revisions date | 03/15/2025 | dieisabel |
 
 ## Content
 
@@ -117,4 +118,6 @@ Testing and Validation phase deliverables status is presented in [Table 7](#tabl
     1. purpose
     1. main functionality
 1. Describe architecture abstraction layers: system, module, component
-1. Add setup chapter which explains how to setup VS Code environment for writing/viewing documentation
+1. Add development setup chapter which has:
+    1. explains how to setup VS Code environment for writing/viewing documentation
+    1. explains how to setup CI
