@@ -11,4 +11,4 @@ repos:
     language: "system"
     types: [ "c++", "c" ]
     pass_filenames: true
-    exclude: ^(.vscode/)
+    exclude: ^(.vscode/)|(platforms/nucleo-g431kb/Drivers)|(platforms/nucleo-g431kb/Core)
