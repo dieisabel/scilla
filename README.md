@@ -6,9 +6,10 @@
 - [2. Project Structure](#2-project-structure)
 - [3. Development](#3-development)
     - [3.1 Code Style](#31-code-style)
-    - [3.2 VS Code Development Environment](#32-vs-code-development-environment)
-        - [3.2.1 File templates](#321-file-templates)
-        - [3.2.2 Auto formatting](#322-auto-formatting)
+    - [3.2 CI](#32-ci)
+    - [3.3 VS Code Development Environment](#33-vs-code-development-environment)
+        - [3.3.1 File templates](#331-file-templates)
+        - [3.3.2 Auto formatting](#332-auto-formatting)
 - [4. License](#4-license)
 
 ## 1. Introduction
@@ -35,15 +36,19 @@ Project uses [Google C++ Code Style](https://google.github.io/styleguide/cppguid
 
 Use `clang-format` utility to format files. Check [their website](https://clang.llvm.org/docs/ClangFormat.html) for more information.
 
-### 3.2 VS Code Development Environment
+### 3.2 CI
+
+Project have a Continious Integration (CI) process to ensure code meets project standards. CI is implemented using `pre-commit` utility. A full list of hooks you can see in `.pre-commit-config.yaml` file.
+
+### 3.3 VS Code Development Environment
 
 You can use VS Code for development. `.vscode/` directory contains all files related to VS Code configuration: templates, settings, extensions, etc. Check `.vscode/extensions.json` for a list of recommended extensions.
 
-#### 3.2.1 File templates
+#### 3.3.1 File templates
 
 `thinker.new-file-template` extension allows us to create files from templates. Project has a `cpp_class` template for creating C++ classes. You can use it using `<Mouse right click> -> New File from Template -> <Select files> -> <Enter class name> -> <Done>`.
 
-#### 3.2.2 Auto formatting
+#### 3.3.2 Auto formatting
 
 `xaver.clang-format` extension allows us to format files using `clang-format` in VS Code. Install this extension, add `"editor.formatOnSave": true` setting to your `.vscode/settings.json`. With this files will be automatically formatting on save.
 

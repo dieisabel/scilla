@@ -1,0 +1,11 @@
+repos:
+- repo: local
+  hooks:
+  - id: check-formatting
+    name: Check formatting
+    entry: clang-format
+    args: [ "--Werror", "--dry-run" ]
+    language: "system"
+    types: [ "c++", "c" ]
+    pass_filenames: true
+    exclude: ^(.vscode/)
