@@ -1,5 +1,7 @@
 cmake_minimum_required(VERSION 3.2)
 
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
 project(scilla)
 set(SCILLA_PROJECT_ROOT ${CMAKE_CURRENT_SOURCE_DIR})
 
