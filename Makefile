@@ -1,5 +1,5 @@
 OPENOCD = openocd
-EXECUTABLE = build/platforms/platform-prefix/src/platform-build/nucleo-g431kb.elf
+EXECUTABLE = build/Debug/scilla.elf
 
 openocd_server:
 	$(OPENOCD) -f interface/stlink.cfg -f target/stm32g4x.cfg
