@@ -19,7 +19,7 @@ This repository contains Scilla project.
 ## 2. Project Structure
 
 Project is divided into separate directories. Each directory have a `README.md` file that describes directory content. Full list is presented below:
-1. [docs/](docs/README.md) - project documentation, contains project and technical documentation
+1. [Docs/](Docs/README.md) - project documentation, contains project and technical documentation
 1. [experiments/](experiments/README.md) - experiments and system modeling
 1. [core/](core/README.md) - core modules
 
