@@ -1,29 +1,37 @@
-cmake_minimum_required(VERSION 3.2)
+cmake_minimum_required(VERSION 3.22)
 
-set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
-
-project(scilla)
-set(SCILLA_PROJECT_ROOT ${CMAKE_CURRENT_SOURCE_DIR})
-
-if(CMAKE_BUILD_TYPE STREQUAL "Debug")
-    add_compile_definitions(DEBUG)
-    add_compile_options(-g3 -O0)
-    add_compile_options(
-        -Wall -Wextra -Werror -Wconversion -Wshadow -Wpedantic
-        -Wfloat-conversion -Wfloat-equal -Wswitch
-    )
-elseif(CMAKE_BUILD_TYPE STREQUAL "Release")
-    add_compile_definitions(RELEASE)
-else()
-    message(FATAL_ERROR "-- Unknown build type, abort")
-endif()
-message(STATUS "Build type is ${CMAKE_BUILD_TYPE}")
+set(CMAKE_C_STANDARD 17)
+set(CMAKE_C_STANDARD_REQUIRED ON)
+set(CMAKE_C_EXTENSIONS ON)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-set(CMAKE_C_STANDARD 17)
-set(CMAKE_C_STANDARD_REQUIRED ON)
+set(CMAKE_PROJECT_NAME scilla)
 
-add_subdirectory(core)
-add_subdirectory(platforms)
+include("cmake/gcc-arm-none-eabi.cmake")
+
+set(CMAKE_EXPORT_COMPILE_COMMANDS TRUE)
+
+project(${CMAKE_PROJECT_NAME}
+    LANGUAGES ASM C CXX
+)
+
+add_executable(${CMAKE_PROJECT_NAME})
+
+add_subdirectory(cmake/stm32cubemx)
+
+target_link_directories(${CMAKE_PROJECT_NAME} PRIVATE
+)
+
+target_sources(${CMAKE_PROJECT_NAME} PRIVATE
+    BSP/STM32G4xx_Nucleo/stm32g4xx_nucleo.c
+)
+
+target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
+    BSP/STM32G4xx_Nucleo
+)
+
+target_link_libraries(${CMAKE_PROJECT_NAME}
+    stm32cubemx
+)

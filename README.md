@@ -22,7 +22,6 @@ Project is divided into separate directories. Each directory have a `README.md` 
 1. [docs/](docs/README.md) - project documentation, contains project and technical documentation
 1. [experiments/](experiments/README.md) - experiments and system modeling
 1. [core/](core/README.md) - core modules
-1. [platforms/](platforms/README.md) - supported platforms
 
 ## 3. Development
 

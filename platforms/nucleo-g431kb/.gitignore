@@ -1,7 +1,0 @@
-Drivers/BSP
-Drivers/CMSIS
-Drivers/STM32G4xx_HAL_Driver
-cmake/
-.mxproject
-startup_stm32g431xx.s
-STM32G431XX_FLASH.ld
