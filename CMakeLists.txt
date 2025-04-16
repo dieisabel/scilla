@@ -21,9 +21,6 @@ add_executable(${CMAKE_PROJECT_NAME})
 
 add_subdirectory(cmake/stm32cubemx)
 
-target_link_directories(${CMAKE_PROJECT_NAME} PRIVATE
-)
-
 target_sources(${CMAKE_PROJECT_NAME} PRIVATE
     BSP/STM32G4xx_Nucleo/stm32g4xx_nucleo.c
 )
