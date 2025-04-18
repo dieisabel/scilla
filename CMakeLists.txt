@@ -20,6 +20,7 @@ project(${CMAKE_PROJECT_NAME}
 add_executable(${CMAKE_PROJECT_NAME})
 
 add_subdirectory(cmake/stm32cubemx)
+add_subdirectory(Logic)
 
 target_sources(${CMAKE_PROJECT_NAME} PRIVATE
     BSP/STM32G4xx_Nucleo/stm32g4xx_nucleo.c

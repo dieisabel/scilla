@@ -21,13 +21,18 @@
  * SOFTWARE.
  */
 
-#ifndef SCILLA_CORE_INCLUDE_SCILLA_CORE_HAL_TIMER_I_TIMER_SUBSCRIBER_H_
-#define SCILLA_CORE_INCLUDE_SCILLA_CORE_HAL_TIMER_I_TIMER_SUBSCRIBER_H_
+#ifndef SCILLA_LOGIC_CORE_TASK_TASK_PARAMETERS_H_
+#define SCILLA_LOGIC_CORE_TASK_TASK_PARAMETERS_H_
+
+#include <cstdint>
 
 namespace scilla::core {
 
-struct ITimerSubscriber {
-    virtual void processTimeoutEvent() = 0;
+struct TaskParameters {
+    uint8_t priority;
+    uint32_t stackSize;
+    void (*function)();
+    void* other;
 };
 
 }  // namespace scilla::core

@@ -21,20 +21,19 @@
  * SOFTWARE.
  */
 
-#ifndef SCILLA_CORE_INCLUDE_SCILLA_CORE_OS_TASK_TASK_PARAMETERS_H_
-#define SCILLA_CORE_INCLUDE_SCILLA_CORE_OS_TASK_TASK_PARAMETERS_H_
+#ifndef SCILLA_LOGIC_CORE_ADC_E_A_D_C_STATE_H_
+#define SCILLA_LOGIC_CORE_ADC_E_A_D_C_STATE_H_
 
 #include <cstdint>
 
 namespace scilla::core {
 
-struct TaskParameters {
-    uint8_t priority;
-    uint32_t memorySize;
-    void (*function)();
-    void* other;
+enum class EADCState : uint8_t {
+    eNotInitialized = 0,
+    eIdle,
+    eConverting,
 };
 
-}  // namespace scilla::core
+}
 
 #endif

@@ -21,12 +21,12 @@
  * SOFTWARE.
  */
 
-#ifndef SCILLA_CORE_INCLUDE_SCILLA_CORE_OS_TASK_I_TASK_H_
-#define SCILLA_CORE_INCLUDE_SCILLA_CORE_OS_TASK_I_TASK_H_
+#ifndef SCILLA_LOGIC_CORE_TASK_I_TASK_H_
+#define SCILLA_LOGIC_CORE_TASK_I_TASK_H_
 
-#include "scilla/core/os/task/ETaskState.h"
-#include "scilla/core/os/task/ETaskStatus.h"
-#include "scilla/core/os/task/TaskParameters.h"
+#include "core/task/ETaskState.h"
+#include "core/task/ETaskStatus.h"
+#include "core/task/TaskParameters.h"
 
 namespace scilla::core {
 

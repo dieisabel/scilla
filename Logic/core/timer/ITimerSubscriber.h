@@ -21,21 +21,15 @@
  * SOFTWARE.
  */
 
-#ifndef SCILLA_CORE_INCLUDE_SCILLA_CORE_OS_TASK_E_TASK_STATUS_H_
-#define SCILLA_CORE_INCLUDE_SCILLA_CORE_OS_TASK_E_TASK_STATUS_H_
+#ifndef SCILLA_LOGIC_CORE_TIMER_I_TIMER_SUBSCRIBER_H_
+#define SCILLA_LOGIC_CORE_TIMER_I_TIMER_SUBSCRIBER_H_
 
 namespace scilla::core {
 
-enum class ETaskStatus {
-    eNotInitialized = 0,
-    eSuccess,
-    eError,
-    eNotStarted,
-    eAlreadyStarted,
-    eInvalidParameters,
-    eNotImplemented
+struct ITimerSubscriber {
+    virtual void processTimeoutEvent() = 0;
 };
 
-}
+}  // namespace scilla::core
 
 #endif

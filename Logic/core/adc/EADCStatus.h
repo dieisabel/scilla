@@ -21,18 +21,18 @@
  * SOFTWARE.
  */
 
-#ifndef SCILLA_CORE_INCLUDE_SCILLA_CORE_HAL_TIMER_E_TIMER_STATUS_H_
-#define SCILLA_CORE_INCLUDE_SCILLA_CORE_HAL_TIMER_E_TIMER_STATUS_H_
+#ifndef SCILLA_LOGIC_CORE_ADC_E_A_D_C_STATUS_H_
+#define SCILLA_LOGIC_CORE_ADC_E_A_D_C_STATUS_H_
+
+#include <cstdint>
 
 namespace scilla::core {
 
-enum class ETimerStatus {
+enum class EADCStatus : uint8_t {
     eNotInitialized = 0,
     eSuccess,
     eError,
-    eSubscriberAlreadyInList,
-    eSubscriberNotFound,
-    eIntervalNotSupported,
+    eChannelNotSupported,
     eNotImplemented,
 };
 

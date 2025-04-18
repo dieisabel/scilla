@@ -21,17 +21,21 @@
  * SOFTWARE.
  */
 
-#ifndef SCILLA_CORE_INCLUDE_SCILLA_CORE_OSCILLOSCOPE_ADC_E_A_D_C_STATUS_H_
-#define SCILLA_CORE_INCLUDE_SCILLA_CORE_OSCILLOSCOPE_ADC_E_A_D_C_STATUS_H_
+#ifndef SCILLA_LOGIC_CORE_TASK_TASK_E_TASK_STATUS_H_
+#define SCILLA_LOGIC_CORE_TASK_TASK_E_TASK_STATUS_H_
+
+#include <cstdint>
 
 namespace scilla::core {
 
-enum class EADCStatus {
+enum class ETaskStatus : uint8_t {
     eNotInitialized = 0,
     eSuccess,
     eError,
-    eChannelNotSupported,
-    eNotImplemented,
+    eNotStarted,
+    eAlreadyStarted,
+    eInvalidParameters,
+    eNotImplemented
 };
 
 }
