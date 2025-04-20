@@ -21,26 +21,33 @@
  * SOFTWARE.
  */
 
-#ifndef SCILLA_LOGIC_CORE_TASK_I_TASK_H_
-#define SCILLA_LOGIC_CORE_TASK_I_TASK_H_
+#ifndef SCILLA_LOGIC_TIMER_TIMER_I_TIMER_H_
+#define SCILLA_LOGIC_TIMER_TIMER_I_TIMER_H_
 
-#include "core/task/ETaskState.h"
-#include "core/task/ETaskStatus.h"
-#include "core/task/TaskParameters.h"
+#include <cstdint>
 
-namespace scilla::core {
+#include "timer/ETimerState.h"
+#include "timer/ETimerStatus.h"
+#include "timer/ITimerSubscriber.h"
 
-struct ITask {
-    virtual ETaskStatus init(const TaskParameters& parameters) = 0;
-    virtual ~ITask() {};
-    virtual ETaskStatus reset() = 0;
-    virtual ETaskStatus start() = 0;
-    virtual ETaskStatus stop() = 0;
-    virtual ETaskStatus join() = 0;
-    virtual ETaskState getState() = 0;
-    virtual ETaskStatus getId(uint8_t& dest) = 0;
+namespace scilla {
+
+struct ITimer {
+    virtual ETimerStatus init() = 0;
+    virtual ~ITimer() {}
+    virtual ETimerStatus reset() = 0;
+    virtual ETimerStatus start() = 0;
+    virtual ETimerStatus stop() = 0;
+    virtual ETimerStatus setInterval(uint32_t interval) = 0;
+    virtual ETimerStatus getInterval(uint32_t& dest) = 0;
+    virtual ETimerStatus getTicks(uint32_t& dest) = 0;
+    virtual ETimerState getState() = 0;
+    virtual ETimerStatus addSubscriber(ITimerSubscriber* subscriber) = 0;
+    virtual ETimerStatus removeSubscriber(ITimerSubscriber* subscriber) = 0;
+    virtual ETimerStatus notify() = 0;
+    virtual void processFromISR() = 0;
 };
 
-}  // namespace scilla::core
+}  // namespace scilla
 
 #endif

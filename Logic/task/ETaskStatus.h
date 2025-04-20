@@ -21,21 +21,21 @@
  * SOFTWARE.
  */
 
-#ifndef SCILLA_LOGIC_CORE_TIMER_E_TIMER_STATUS_H_
-#define SCILLA_LOGIC_CORE_TIMER_E_TIMER_STATUS_H_
+#ifndef SCILLA_LOGIC_TASK_TASK_E_TASK_STATUS_H_
+#define SCILLA_LOGIC_TASK_TASK_E_TASK_STATUS_H_
 
 #include <cstdint>
 
-namespace scilla::core {
+namespace scilla {
 
-enum class ETimerStatus : uint8_t {
+enum class ETaskStatus : uint8_t {
     eNotInitialized = 0,
     eSuccess,
     eError,
-    eSubscriberAlreadyInList,
-    eSubscriberNotFound,
-    eIntervalNotSupported,
-    eNotImplemented,
+    eNotStarted,
+    eAlreadyStarted,
+    eInvalidParameters,
+    eNotImplemented
 };
 
 }

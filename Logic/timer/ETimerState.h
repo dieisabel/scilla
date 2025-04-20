@@ -21,15 +21,19 @@
  * SOFTWARE.
  */
 
-#ifndef SCILLA_LOGIC_CORE_TIMER_I_TIMER_SUBSCRIBER_H_
-#define SCILLA_LOGIC_CORE_TIMER_I_TIMER_SUBSCRIBER_H_
+#ifndef SCILLA_LOGIC_TIMER_E_TIMER_STATE_H_
+#define SCILLA_LOGIC_TIMER_E_TIMER_STATE_H_
 
-namespace scilla::core {
+#include <cstdint>
 
-struct ITimerSubscriber {
-    virtual void processTimeoutEvent() = 0;
+namespace scilla {
+
+enum class ETimerState : uint8_t {
+    eNotInitialized = 0,
+    eIdle,
+    eRunning,
 };
 
-}  // namespace scilla::core
+}
 
 #endif

@@ -21,19 +21,15 @@
  * SOFTWARE.
  */
 
-#ifndef SCILLA_LOGIC_CORE_ADC_E_A_D_C_STATE_H_
-#define SCILLA_LOGIC_CORE_ADC_E_A_D_C_STATE_H_
+#ifndef SCILLA_LOGIC_TIMER_I_TIMER_SUBSCRIBER_H_
+#define SCILLA_LOGIC_TIMER_I_TIMER_SUBSCRIBER_H_
 
-#include <cstdint>
+namespace scilla {
 
-namespace scilla::core {
-
-enum class EADCState : uint8_t {
-    eNotInitialized = 0,
-    eIdle,
-    eConverting,
+struct ITimerSubscriber {
+    virtual void processTimeoutEvent() = 0;
 };
 
-}
+}  // namespace scilla
 
 #endif

@@ -21,23 +21,19 @@
  * SOFTWARE.
  */
 
-#ifndef SCILLA_LOGIC_CORE_TASK_TASK_E_TASK_STATUS_H_
-#define SCILLA_LOGIC_CORE_TASK_TASK_E_TASK_STATUS_H_
+#ifndef SCILLA_LOGIC_TASK_TASK_PARAMETERS_H_
+#define SCILLA_LOGIC_TASK_TASK_PARAMETERS_H_
 
 #include <cstdint>
 
-namespace scilla::core {
+namespace scilla {
 
-enum class ETaskStatus : uint8_t {
-    eNotInitialized = 0,
-    eSuccess,
-    eError,
-    eNotStarted,
-    eAlreadyStarted,
-    eInvalidParameters,
-    eNotImplemented
+struct TaskParameters {
+    uint8_t priority;
+    uint32_t stackSize;
+    void* other;
 };
 
-}
+}  // namespace scilla
 
 #endif

@@ -21,15 +21,26 @@
  * SOFTWARE.
  */
 
-#ifndef SCILLA_LOGIC_CORE_TASK_E_TASK_STATE_H_
-#define SCILLA_LOGIC_CORE_TASK_E_TASK_STATE_H_
+#ifndef SCILLA_LOGIC_TASK_I_TASK_H_
+#define SCILLA_LOGIC_TASK_I_TASK_H_
 
-#include <cstdint>
+#include "task/ETaskState.h"
+#include "task/ETaskStatus.h"
+#include "task/TaskParameters.h"
 
-namespace scilla::core {
+namespace scilla {
 
-enum class ETaskState : uint8_t { eNotInitialized = 0, eIdle, eRunning };
+struct ITask {
+    virtual ETaskStatus init(const TaskParameters& parameters) = 0;
+    virtual ~ITask() {};
+    virtual ETaskStatus reset() = 0;
+    virtual ETaskStatus start() = 0;
+    virtual ETaskStatus stop() = 0;
+    virtual ETaskStatus join() = 0;
+    virtual ETaskState getState() = 0;
+    virtual ETaskStatus getId(uint8_t& dest) = 0;
+};
 
-}
+}  // namespace scilla
 
 #endif

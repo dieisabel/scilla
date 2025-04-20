@@ -21,24 +21,23 @@
  * SOFTWARE.
  */
 
-#ifndef SCILLA_LOGIC_CORE_ADC_I_A_D_C_H_
-#define SCILLA_LOGIC_CORE_ADC_I_A_D_C_H_
+#ifndef SCILLA_LOGIC_TIMER_E_TIMER_STATUS_H_
+#define SCILLA_LOGIC_TIMER_E_TIMER_STATUS_H_
 
 #include <cstdint>
 
-#include "scilla/core/oscilloscope/adc/EADCState.h"
-#include "scilla/core/oscilloscope/adc/EADCStatus.h"
+namespace scilla {
 
-namespace scilla::core {
-
-struct IADC {
-    virtual EADCStatus init() = 0;
-    virtual ~IADC() {}
-    virtual EADCStatus reset() = 0;
-    virtual EADCStatus singleConvert(uint8_t channel, uint32_t& dest) = 0;
-    virtual EADCState getState() = 0;
+enum class ETimerStatus : uint8_t {
+    eNotInitialized = 0,
+    eSuccess,
+    eError,
+    eSubscriberAlreadyInList,
+    eSubscriberNotFound,
+    eIntervalNotSupported,
+    eNotImplemented,
 };
 
-}  // namespace scilla::core
+}
 
 #endif

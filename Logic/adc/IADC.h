@@ -21,21 +21,24 @@
  * SOFTWARE.
  */
 
-#ifndef SCILLA_LOGIC_CORE_ADC_E_A_D_C_STATUS_H_
-#define SCILLA_LOGIC_CORE_ADC_E_A_D_C_STATUS_H_
+#ifndef SCILLA_LOGIC_ADC_I_A_D_C_H_
+#define SCILLA_LOGIC_ADC_I_A_D_C_H_
 
 #include <cstdint>
 
-namespace scilla::core {
+#include "adc/EADCState.h"
+#include "adc/EADCStatus.h"
 
-enum class EADCStatus : uint8_t {
-    eNotInitialized = 0,
-    eSuccess,
-    eError,
-    eChannelNotSupported,
-    eNotImplemented,
+namespace scilla {
+
+struct IADC {
+    virtual EADCStatus init() = 0;
+    virtual ~IADC() {}
+    virtual EADCStatus reset() = 0;
+    virtual EADCStatus singleConvert(uint8_t channel, uint32_t& dest) = 0;
+    virtual EADCState getState() = 0;
 };
 
-}
+}  // namespace scilla
 
 #endif
