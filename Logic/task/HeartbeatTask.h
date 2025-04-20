@@ -21,25 +21,38 @@
  * SOFTWARE.
  */
 
-#ifndef SCILLA_LOGIC_TASK_I_TASK_H_
-#define SCILLA_LOGIC_TASK_I_TASK_H_
+#ifndef SCILLA_LOGIC_HEARTBEAT_TASK_H_
+#define SCILLA_LOGIC_HEARTBEAT_TASK_H_
 
-#include "task/ETaskState.h"
-#include "task/ETaskStatus.h"
-#include "task/TaskParameters.h"
+#include "FreeRTOS.h"
+#include "task.h"
+#include "task/ITask.h"
 
 namespace scilla {
 
-struct ITask {
-    virtual ETaskStatus init(const TaskParameters& parameters) = 0;
-    virtual ETaskStatus destroy() = 0;
-    virtual ~ITask() {};
-    virtual ETaskStatus reset() = 0;
-    virtual ETaskStatus start() = 0;
-    virtual ETaskStatus stop() = 0;
-    virtual ETaskStatus join() = 0;
-    virtual ETaskState getState() = 0;
-    virtual ETaskStatus getId(uint8_t& dest) = 0;
+struct HeartbeatTask : public ITask {
+    virtual ETaskStatus init(const TaskParameters& parameters) override;
+    virtual ETaskStatus destroy() override;
+    virtual ~HeartbeatTask() override;
+    virtual ETaskStatus reset() override;
+    virtual ETaskStatus start() override;
+    virtual ETaskStatus stop() override;
+    virtual ETaskStatus join() override;
+    virtual ETaskState getState() override;
+    virtual ETaskStatus getId(uint8_t& dest) override;
+
+    static ITask* getInstance();
+
+    /**
+     * @brief Run loop. "Private", should be called from FreeRTOS C wrapper
+     */
+    void _run(void* args);
+
+private:
+    TaskParameters mParameters;
+    ETaskState mState = ETaskState::eNotInitialized;
+    TaskHandle_t mRtosTaskHandle;
+    static constexpr uint8_t kMinStackSize = 128;
 };
 
 }  // namespace scilla

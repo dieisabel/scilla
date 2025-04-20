@@ -28,7 +28,7 @@
 
 namespace scilla {
 
-enum class ETaskState : uint8_t { eNotInitialized = 0, eIdle, eRunning };
+enum class ETaskState : uint8_t { eNotInitialized = 0, eSuspended, eRunning };
 
 }
 

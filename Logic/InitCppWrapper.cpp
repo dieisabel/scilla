@@ -23,6 +23,29 @@
 
 #include "InitCppWrapper.h"
 
+#include "task/HeartbeatTask.h"
+
+using namespace scilla;
+
+void HeartbeatTask_Init();
+
 extern "C" {
-void Scilla_Initialize(void* args) { (void)args; }
+void Scilla_Initialize(void* args) {
+    (void)args;
+
+    HeartbeatTask_Init();
+
+    vTaskStartScheduler();
+}
+}
+
+void HeartbeatTask_Init() {
+    TaskParameters heartbeatTaskParameters;
+    heartbeatTaskParameters.priority = 20;
+    heartbeatTaskParameters.stackSize = 128;
+
+    ITask* heartbeatTask = HeartbeatTask::getInstance();
+    if (heartbeatTask->init(heartbeatTaskParameters) == ETaskStatus::eSuccess) {
+        heartbeatTask->start();
+    }
 }
