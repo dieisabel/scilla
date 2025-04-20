@@ -26,6 +26,8 @@
 /* USER CODE BEGIN Includes */
 #include "stdio.h"
 #include "stm32g4xx_nucleo.h"
+
+#include "InitCppWrapper.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -106,6 +108,7 @@ int main(void)
     Error_Handler();
   }
 
+  Scilla_Initialize(NULL);
   /* USER CODE END 2 */
 
   /* Init scheduler */
