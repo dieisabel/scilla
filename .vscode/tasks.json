@@ -1,0 +1,30 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build",
+            "type": "process",
+            "command": "make",
+            "args": [
+                "build"
+            ],
+            "problemMatcher": "$gcc"
+        },
+        {
+            "label": "Flash",
+            "type": "process",
+            "command": "make",
+            "args": [
+                "flash"
+            ],
+        },
+        {
+            "label": "Clean",
+            "type": "process",
+            "command": "make",
+            "args": [
+                "clean"
+            ],
+        },
+    ],
+}

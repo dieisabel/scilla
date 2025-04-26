@@ -10,6 +10,7 @@
     - [3.3 VS Code Development Environment](#33-vs-code-development-environment)
         - [3.3.1 File templates](#331-file-templates)
         - [3.3.2 Auto formatting](#332-auto-formatting)
+        - [3.3.3 Tasks](#333-tasks)
 - [4. License](#4-license)
 
 ## 1. Introduction
@@ -49,6 +50,10 @@ You can use VS Code for development. `.vscode/` directory contains all files rel
 #### 3.3.2 Auto formatting
 
 `xaver.clang-format` extension allows us to format files using `clang-format` in VS Code. Install this extension, add `"editor.formatOnSave": true` setting to your `.vscode/settings.json`. With this files will be automatically formatting on save.
+
+#### 3.3.3 Tasks
+
+VS Code features excellent feature called Tasks. They allows to run certain tools and commands using VS Code command prompt instead of going into terminal. Project features tasks for building, cleaning, flashing, etc. Full list of tasks is located in `.vscode/tasks.json`. Invoke them using `<Ctrl + Shift + P> -> Tasks: Run Task` and select task. For more information see official [webpage](https://code.visualstudio.com/docs/debugtest/tasks).
 
 ## 4. License
 
