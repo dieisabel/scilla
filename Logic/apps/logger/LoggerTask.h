@@ -21,45 +21,40 @@
  * SOFTWARE.
  */
 
-#include "InitCppWrapper.h"
+#ifndef SCILLA_LOGIC_APPS_LOGGER_LOGGER_TASK_H_
+#define SCILLA_LOGIC_APPS_LOGGER_LOGGER_TASK_H_
 
-#include "LoggerTask.h"
-#include "task/HeartbeatTask.h"
+#include "FreeRTOS.h"
+#include "task.h"
+#include "task/ITask.h"
 
-using namespace scilla;
+namespace scilla {
 
-void HeartbeatTask_Init();
-void LoggerTask_Init();
+struct LoggerTask : public ITask {
+    virtual ETaskStatus init(const TaskParameters& parameters) override;
+    virtual ETaskStatus destroy() override;
+    virtual ~LoggerTask() override;
+    virtual ETaskStatus reset() override;
+    virtual ETaskStatus start() override;
+    virtual ETaskStatus stop() override;
+    virtual ETaskStatus join() override;
+    virtual ETaskState getState() override;
+    virtual ETaskStatus getId(uint8_t& dest) override;
 
-extern "C" {
-void Scilla_Initialize(void* args) {
-    (void)args;
+    static ITask* getInstance();
 
-    LoggerTask_Init();
-    HeartbeatTask_Init();
+    /**
+     * @brief Run loop. "Private", should be called from FreeRTOS C wrapper
+     */
+    void _run(void* args);
 
-    vTaskStartScheduler();
-}
-}
+private:
+    TaskParameters mParameters;
+    ETaskState mState = ETaskState::eNotInitialized;
+    TaskHandle_t mRtosTaskHandle;
+    static constexpr uint8_t kMinStackSize = 128;
+};
 
-void HeartbeatTask_Init() {
-    TaskParameters heartbeatTaskParameters;
-    heartbeatTaskParameters.priority = 20;
-    heartbeatTaskParameters.stackSize = 128;
+}  // namespace scilla
 
-    ITask* heartbeatTask = HeartbeatTask::getInstance();
-    if (heartbeatTask->init(heartbeatTaskParameters) == ETaskStatus::eSuccess) {
-        heartbeatTask->start();
-    }
-}
-
-void LoggerTask_Init() {
-    TaskParameters loggerTaskParameters;
-    loggerTaskParameters.priority = 21;
-    loggerTaskParameters.stackSize = 128;
-
-    ITask* loggerTask = LoggerTask::getInstance();
-    if (loggerTask->init(loggerTaskParameters) == ETaskStatus::eSuccess) {
-        loggerTask->start();
-    }
-}
+#endif

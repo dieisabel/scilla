@@ -20,6 +20,7 @@ project(${CMAKE_PROJECT_NAME}
 add_executable(${CMAKE_PROJECT_NAME})
 
 add_subdirectory(cmake/stm32cubemx)
+add_subdirectory(Lib)
 add_subdirectory(Logic)
 
 target_sources(${CMAKE_PROJECT_NAME} PRIVATE

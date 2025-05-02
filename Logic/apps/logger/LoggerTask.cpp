@@ -21,19 +21,18 @@
  * SOFTWARE.
  */
 
-#include "HeartbeatTask.h"
+#include "LoggerTask.h"
 
 #include "FreeRTOS.h"
-#include "stm32g4xx_nucleo.h"
 #include "task.h"
 #include "trice.h"
 
 using namespace scilla;
 
 extern "C" {
-static void Scilla_HeartbeatTask_CRun(void* args) {
+static void Scilla_LoggerTask_CRun(void* args) {
     (void)args;
-    HeartbeatTask* task = static_cast<HeartbeatTask*>(HeartbeatTask::getInstance());
+    LoggerTask* task = static_cast<LoggerTask*>(LoggerTask::getInstance());
 
     /* On initialization task might start running immediatly because of how FreeRTOS
      * handles them. Wait here until first start is called */
@@ -45,15 +44,15 @@ static void Scilla_HeartbeatTask_CRun(void* args) {
 }
 }
 
-ETaskStatus HeartbeatTask::init(const TaskParameters& parameters) {
+ETaskStatus LoggerTask::init(const TaskParameters& parameters) {
     if (parameters.stackSize < kMinStackSize) {
         return ETaskStatus::eInvalidParameters;
     }
 
     mParameters = parameters;
     BaseType_t status =
-        xTaskCreate(Scilla_HeartbeatTask_CRun, "HeartbeatTask", mParameters.stackSize,
-                    NULL, mParameters.priority,
+        xTaskCreate(Scilla_LoggerTask_CRun, "LoggerTask", mParameters.stackSize, NULL,
+                    mParameters.priority,
                     &mRtosTaskHandle); /* TODO: Allocate static buffer for task */
     if (status != pdPASS) {
         return ETaskStatus::eError;
@@ -63,7 +62,7 @@ ETaskStatus HeartbeatTask::init(const TaskParameters& parameters) {
     return ETaskStatus::eSuccess;
 }
 
-ETaskStatus HeartbeatTask::destroy() {
+ETaskStatus LoggerTask::destroy() {
     if (mState == ETaskState::eNotInitialized) {
         return ETaskStatus::eNotInitialized;
     }
@@ -75,9 +74,9 @@ ETaskStatus HeartbeatTask::destroy() {
     return ETaskStatus::eSuccess;
 }
 
-HeartbeatTask::~HeartbeatTask() { destroy(); }
+LoggerTask::~LoggerTask() { destroy(); }
 
-ETaskStatus HeartbeatTask::reset() {
+ETaskStatus LoggerTask::reset() {
     if (mState == ETaskState::eNotInitialized) {
         return ETaskStatus::eNotInitialized;
     }
@@ -86,7 +85,7 @@ ETaskStatus HeartbeatTask::reset() {
     return ETaskStatus::eSuccess;
 }
 
-ETaskStatus HeartbeatTask::start() {
+ETaskStatus LoggerTask::start() {
     switch (mState) {
         case ETaskState::eSuspended:
             vTaskResume(mRtosTaskHandle);
@@ -102,7 +101,7 @@ ETaskStatus HeartbeatTask::start() {
     return ETaskStatus::eError;
 }
 
-ETaskStatus HeartbeatTask::stop() {
+ETaskStatus LoggerTask::stop() {
     switch (mState) {
         case ETaskState::eRunning:
             vTaskSuspend(mRtosTaskHandle);
@@ -118,30 +117,25 @@ ETaskStatus HeartbeatTask::stop() {
     return ETaskStatus::eError;
 }
 
-void HeartbeatTask::_run(void* args) {
+void LoggerTask::_run(void* args) {
     (void)args;
 
     while (true) {
-        trice(iD(5369), "Beat\n");
-        BSP_LED_Off(LED_GREEN);
-        vTaskDelay(pdMS_TO_TICKS(1000));
-
-        trice(iD(2015), "Beat\n");
-        BSP_LED_On(LED_GREEN);
-        vTaskDelay(pdMS_TO_TICKS(1000));
+        TriceTransfer();
+        vTaskDelay(100);
     }
 }
 
-ETaskStatus HeartbeatTask::join() { return ETaskStatus::eNotImplemented; }
+ETaskStatus LoggerTask::join() { return ETaskStatus::eNotImplemented; }
 
-ETaskState HeartbeatTask::getState() { return mState; }
+ETaskState LoggerTask::getState() { return mState; }
 
-ETaskStatus HeartbeatTask::getId(uint8_t& dest) {
+ETaskStatus LoggerTask::getId(uint8_t& dest) {
     (void)dest;
     return ETaskStatus::eNotImplemented;
 }
 
-ITask* HeartbeatTask::getInstance() {
-    static HeartbeatTask instance;
+ITask* LoggerTask::getInstance() {
+    static LoggerTask instance;
     return &instance;
 }
