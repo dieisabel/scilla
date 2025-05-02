@@ -97,17 +97,6 @@ int main(void)
   BSP_LED_Init(LED_GREEN);
   BSP_LED_Off(LED_GREEN);
 
-  COM_InitTypeDef BspCOMInit;
-  BspCOMInit.BaudRate   = 115200;
-  BspCOMInit.WordLength = COM_WORDLENGTH_8B;
-  BspCOMInit.StopBits   = COM_STOPBITS_1;
-  BspCOMInit.Parity     = COM_PARITY_NONE;
-  BspCOMInit.HwFlowCtl  = COM_HWCONTROL_NONE;
-  if (BSP_COM_Init(COM1, &BspCOMInit) != BSP_ERROR_NONE)
-  {
-    Error_Handler();
-  }
-
   Scilla_Initialize(NULL);
   /* USER CODE END 2 */
 

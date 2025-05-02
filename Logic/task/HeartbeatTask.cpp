@@ -24,8 +24,10 @@
 #include "HeartbeatTask.h"
 
 #include "FreeRTOS.h"
+#include "stm32g4xx_ll_usart.h"
 #include "stm32g4xx_nucleo.h"
 #include "task.h"
+#include "trice.h"
 
 using namespace scilla;
 
@@ -121,10 +123,16 @@ void HeartbeatTask::_run(void* args) {
     (void)args;
 
     while (true) {
+        trice(iD(4099), "Hello\n");
         BSP_LED_Off(LED_GREEN);
         vTaskDelay(pdMS_TO_TICKS(1000));
+
+        trice(iD(3073), "Hello\n");
         BSP_LED_On(LED_GREEN);
         vTaskDelay(pdMS_TO_TICKS(1000));
+
+        TriceTransfer();
+        vTaskDelay(100);
     }
 }
 
