@@ -6,6 +6,8 @@ target_sources(${PROJECT_NAME} PRIVATE
     InitCppWrapper.cpp
 
     task/HeartbeatTask.cpp
+
+    adc/Stm32Adc.cpp
 )
 
 target_compile_options(${PROJECT_NAME} PRIVATE

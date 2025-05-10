@@ -21,23 +21,24 @@
  * SOFTWARE.
  */
 
-#ifndef SCILLA_LOGIC_ADC_E_A_D_C_STATUS_H_
-#define SCILLA_LOGIC_ADC_E_A_D_C_STATUS_H_
+#include "adc/Stm32Adc.h"
 
-#include <cstdint>
+using namespace scilla;
 
-namespace scilla {
+EADCStatus Stm32Adc::init() { return EADCStatus::eNotImplemented; }
 
-enum class EADCStatus : uint8_t {
-    eNotInitialized = 0,
-    eSuccess,
-    eError,
-    eChannelNotSupported,
-    eNotImplemented,
-    eNotStarted,
-    eAlreadyStarted,
-};
+EADCStatus Stm32Adc::reset() { return EADCStatus::eNotImplemented; }
 
+EADCStatus Stm32Adc::singleConvert(uint8_t channel, uint32_t& dest) {
+    return EADCStatus::eNotImplemented;
 }
 
-#endif
+EADCStatus Stm32Adc::startContiniousConvertions(uint8_t channel) {
+    return EADCStatus::eNotImplemented;
+}
+
+EADCStatus Stm32Adc::stopContiniousConvertions(uint8_t channel) {
+    return EADCStatus::eNotImplemented;
+}
+
+EADCState Stm32Adc::getState() { return EADCState::eNotInitialized; }

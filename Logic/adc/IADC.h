@@ -36,6 +36,8 @@ struct IADC {
     virtual ~IADC() {}
     virtual EADCStatus reset() = 0;
     virtual EADCStatus singleConvert(uint8_t channel, uint32_t& dest) = 0;
+    virtual EADCStatus startContiniousConvertions(uint8_t channel) = 0;
+    virtual EADCStatus stopContiniousConvertions(uint8_t channel) = 0;
     virtual EADCState getState() = 0;
 };
 
