@@ -57,6 +57,8 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define INPUT_CHANNEL_1_Pin GPIO_PIN_0
+#define INPUT_CHANNEL_1_GPIO_Port GPIOA
 #define BSP_COM_TX_Pin GPIO_PIN_2
 #define BSP_COM_TX_GPIO_Port GPIOA
 #define BSP_COM_RX_Pin GPIO_PIN_3
