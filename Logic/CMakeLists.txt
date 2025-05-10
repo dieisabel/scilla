@@ -8,6 +8,7 @@ target_sources(${PROJECT_NAME} PRIVATE
     task/HeartbeatTask.cpp
 
     adc/Stm32Adc.cpp
+    adc/ADCConfiguration.cpp
 )
 
 target_compile_options(${PROJECT_NAME} PRIVATE
