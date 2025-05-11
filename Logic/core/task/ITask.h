@@ -24,22 +24,39 @@
 #ifndef SCILLA_LOGIC_TASK_I_TASK_H_
 #define SCILLA_LOGIC_TASK_I_TASK_H_
 
+#include "FreeRTOS.h"
+#include "task.h"
 #include "task/ETaskState.h"
 #include "task/ETaskStatus.h"
 #include "task/TaskParameters.h"
 
 namespace scilla {
 
+using TTaskCallback = void (*)(void*);
+
 struct ITask {
     virtual ETaskStatus init(const TaskParameters& parameters) = 0;
     virtual ETaskStatus destroy() = 0;
     virtual ~ITask() {};
-    virtual ETaskStatus reset() = 0;
-    virtual ETaskStatus start() = 0;
-    virtual ETaskStatus stop() = 0;
-    virtual ETaskStatus join() = 0;
-    virtual ETaskState getState() = 0;
-    virtual ETaskStatus getId(uint8_t& dest) = 0;
+
+    /**
+     * @brief Run loop. "Private", should be called only from FreeRTOS C wrapper
+     */
+    virtual void _run(void* args) = 0;
+
+    ETaskStatus reset();
+    ETaskStatus start();
+    ETaskStatus stop();
+    ETaskStatus join();
+    ETaskState getState();
+    ETaskStatus getId(uint8_t& dest);
+
+protected:
+    TaskParameters mParameters;
+    ETaskState mState = ETaskState::eNotInitialized;
+    TaskHandle_t mRtosTaskHandle = NULL;
+
+    ETaskStatus baseInit(TTaskCallback callback, const char* name);
 };
 
 }  // namespace scilla

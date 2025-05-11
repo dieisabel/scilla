@@ -48,18 +48,8 @@ ETaskStatus LoggerTask::init(const TaskParameters& parameters) {
     if (parameters.stackSize < kMinStackSize) {
         return ETaskStatus::eInvalidParameters;
     }
-
     mParameters = parameters;
-    BaseType_t status =
-        xTaskCreate(Scilla_LoggerTask_CRun, "LoggerTask", mParameters.stackSize, NULL,
-                    mParameters.priority,
-                    &mRtosTaskHandle); /* TODO: Allocate static buffer for task */
-    if (status != pdPASS) {
-        return ETaskStatus::eError;
-    }
-    vTaskSuspend(mRtosTaskHandle);
-    mState = ETaskState::eSuspended;
-    return ETaskStatus::eSuccess;
+    return baseInit(Scilla_LoggerTask_CRun, "LoggerTask");
 }
 
 ETaskStatus LoggerTask::destroy() {
@@ -76,47 +66,6 @@ ETaskStatus LoggerTask::destroy() {
 
 LoggerTask::~LoggerTask() { destroy(); }
 
-ETaskStatus LoggerTask::reset() {
-    if (mState == ETaskState::eNotInitialized) {
-        return ETaskStatus::eNotInitialized;
-    }
-    destroy();
-    mState = ETaskState::eNotInitialized;
-    return ETaskStatus::eSuccess;
-}
-
-ETaskStatus LoggerTask::start() {
-    switch (mState) {
-        case ETaskState::eSuspended:
-            vTaskResume(mRtosTaskHandle);
-            mState = ETaskState::eRunning;
-            return ETaskStatus::eSuccess;
-        case ETaskState::eNotInitialized:
-            return ETaskStatus::eNotInitialized;
-        case ETaskState::eRunning:
-            return ETaskStatus::eAlreadyStarted;
-        default:
-            return ETaskStatus::eError;
-    }
-    return ETaskStatus::eError;
-}
-
-ETaskStatus LoggerTask::stop() {
-    switch (mState) {
-        case ETaskState::eRunning:
-            vTaskSuspend(mRtosTaskHandle);
-            mState = ETaskState::eSuspended;
-            return ETaskStatus::eSuccess;
-        case ETaskState::eNotInitialized:
-            return ETaskStatus::eNotInitialized;
-        case ETaskState::eSuspended:
-            return ETaskStatus::eNotStarted;
-        default:
-            return ETaskStatus::eError;
-    }
-    return ETaskStatus::eError;
-}
-
 void LoggerTask::_run(void* args) {
     (void)args;
 
@@ -124,15 +73,6 @@ void LoggerTask::_run(void* args) {
         TriceTransfer();
         vTaskDelay(100);
     }
-}
-
-ETaskStatus LoggerTask::join() { return ETaskStatus::eNotImplemented; }
-
-ETaskState LoggerTask::getState() { return mState; }
-
-ETaskStatus LoggerTask::getId(uint8_t& dest) {
-    (void)dest;
-    return ETaskStatus::eNotImplemented;
 }
 
 ITask* LoggerTask::getInstance() {

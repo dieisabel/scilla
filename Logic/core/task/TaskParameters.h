@@ -30,7 +30,7 @@ namespace scilla {
 
 struct TaskParameters {
     uint8_t priority;
-    uint32_t stackSize;
+    uint16_t stackSize;
     void* other;
 };
 

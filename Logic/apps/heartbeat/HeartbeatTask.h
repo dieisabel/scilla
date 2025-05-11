@@ -34,24 +34,11 @@ struct HeartbeatTask : public ITask {
     virtual ETaskStatus init(const TaskParameters& parameters) override;
     virtual ETaskStatus destroy() override;
     virtual ~HeartbeatTask() override;
-    virtual ETaskStatus reset() override;
-    virtual ETaskStatus start() override;
-    virtual ETaskStatus stop() override;
-    virtual ETaskStatus join() override;
-    virtual ETaskState getState() override;
-    virtual ETaskStatus getId(uint8_t& dest) override;
+    virtual void _run(void* args) override;
 
     static ITask* getInstance();
 
-    /**
-     * @brief Run loop. "Private", should be called from FreeRTOS C wrapper
-     */
-    void _run(void* args);
-
 private:
-    TaskParameters mParameters;
-    ETaskState mState = ETaskState::eNotInitialized;
-    TaskHandle_t mRtosTaskHandle;
     static constexpr uint8_t kMinStackSize = 128;
 };
 
