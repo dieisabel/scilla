@@ -26,19 +26,41 @@
 
 #include <cstdint>
 
+#include "adc/ADCConfiguration.h"
 #include "adc/EADCState.h"
 #include "adc/EADCStatus.h"
 
 namespace scilla {
 
+/* TODO: Implement error handling */
+/* TODO: Implement event handling */
 struct IADC {
     virtual EADCStatus init() = 0;
     virtual ~IADC() {}
     virtual EADCStatus reset() = 0;
-    virtual EADCStatus singleConvert(uint8_t channel, uint32_t& dest) = 0;
-    virtual EADCStatus startContiniousConvertions(uint8_t channel) = 0;
-    virtual EADCStatus stopContiniousConvertions(uint8_t channel) = 0;
-    virtual EADCState getState() = 0;
+    virtual EADCStatus start() = 0;
+    virtual EADCStatus stop() = 0;
+
+protected:
+    EADCState mState = EADCState::eNotInitialized;
+    ADCConfiguration mConfiguration;
+
+    EADCState getState();
+
+    EADCStatus setConfiguration(const ADCConfiguration& configuration);
+    EADCStatus getConfiguration(ADCConfiguration& dest);
+
+    EADCStatus setChannel(EADCChannel channel);
+    EADCStatus getChannel(EADCChannel& dest);
+
+    EADCStatus setSamplingTime(EADCSamplingTime samplingTime);
+    EADCStatus getSamplingTime(EADCSamplingTime& dest);
+
+    EADCStatus setResolution(EADCResolution resolution);
+    EADCStatus getResolution(EADCResolution& dest);
+
+    EADCStatus setFrequency(uint32_t frequency);
+    EADCStatus getFrequency(uint32_t& dest);
 };
 
 }  // namespace scilla

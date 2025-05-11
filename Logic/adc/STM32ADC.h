@@ -21,24 +21,44 @@
  * SOFTWARE.
  */
 
-#include "adc/Stm32Adc.h"
+#ifndef SCILLA_LOGIC_ADC_STM32_ADC_H_
+#define SCILLA_LOGIC_ADC_STM32_ADC_H_
 
-using namespace scilla;
+#include "adc.h"
+#include "adc/IADC.h"
 
-EADCStatus Stm32Adc::init() { return EADCStatus::eNotImplemented; }
+namespace scilla {
 
-EADCStatus Stm32Adc::reset() { return EADCStatus::eNotImplemented; }
+using TSTM32ADCSampleType = uint32_t;
+struct STM32ADCBuffer {
+    TSTM32ADCSampleType* ptr;
+    uint32_t size;
+};
 
-EADCStatus Stm32Adc::singleConvert(uint8_t channel, uint32_t& dest) {
-    return EADCStatus::eNotImplemented;
-}
+struct STM32ADCConfiguration {
+    ADC_HandleTypeDef* adcHalHandle;
+    STM32ADCBuffer buffer;
 
-EADCStatus Stm32Adc::startContiniousConvertions(uint8_t channel) {
-    return EADCStatus::eNotImplemented;
-}
+    STM32ADCConfiguration();
+    bool isValid() const;
+    void reset();
+};
 
-EADCStatus Stm32Adc::stopContiniousConvertions(uint8_t channel) {
-    return EADCStatus::eNotImplemented;
-}
+struct STM32ADC : public IADC {
+    EADCStatus init() override;
+    ~STM32ADC() {}
+    EADCStatus reset() override;
+    EADCStatus start() override;
+    EADCStatus stop() override;
 
-EADCState Stm32Adc::getState() { return EADCState::eNotInitialized; }
+    bool setSpecificConfiguration(const STM32ADCConfiguration& configuration);
+    void getSpecificConfiguration(STM32ADCConfiguration& dest);
+
+private:
+    ADC_HandleTypeDef* mAdcHalHandle = nullptr;
+    STM32ADCConfiguration mSpecificConfiguration;
+};
+
+}  // namespace scilla
+
+#endif

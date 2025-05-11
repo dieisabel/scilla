@@ -32,10 +32,9 @@ enum class EADCStatus : uint8_t {
     eNotInitialized = 0,
     eSuccess,
     eError,
-    eChannelNotSupported,
     eNotImplemented,
     eNotStarted,
-    eAlreadyStarted,
+    eErrorStarted,
 };
 
 }
