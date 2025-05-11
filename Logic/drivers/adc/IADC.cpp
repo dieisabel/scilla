@@ -21,7 +21,7 @@
  * SOFTWARE.
  */
 
-#include "adc/IADC.h"
+#include "IADC.h"
 
 using namespace scilla;
 

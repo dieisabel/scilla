@@ -21,9 +21,7 @@
  * SOFTWARE.
  */
 
-#include "adc/STM32ADC.h"
-
-#include "adc.h"
+#include "STM32ADC.h"
 
 using namespace scilla;
 
@@ -91,25 +89,4 @@ EADCStatus STM32ADC::stop() {
         return EADCStatus::eError;
     }
     return EADCStatus::eSuccess;
-}
-
-STM32ADCConfiguration::STM32ADCConfiguration() { reset(); }
-
-bool STM32ADCConfiguration::isValid() const {
-    if (adcHalHandle == nullptr) {
-        return false;
-    }
-    if (buffer.ptr == nullptr) {
-        return false;
-    }
-    if (buffer.size == 0) {
-        return false;
-    }
-    return true;
-}
-
-void STM32ADCConfiguration::reset() {
-    adcHalHandle = nullptr;
-    buffer.ptr = nullptr;
-    buffer.size = 0;
 }

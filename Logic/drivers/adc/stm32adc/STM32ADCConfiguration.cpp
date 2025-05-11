@@ -21,44 +21,27 @@
  * SOFTWARE.
  */
 
-#ifndef SCILLA_LOGIC_ADC_STM32_ADC_H_
-#define SCILLA_LOGIC_ADC_STM32_ADC_H_
+#include "STM32ADCConfiguration.h"
 
-#include "adc.h"
-#include "adc/IADC.h"
+using namespace scilla;
 
-namespace scilla {
+STM32ADCConfiguration::STM32ADCConfiguration() { reset(); }
 
-using TSTM32ADCSampleType = uint32_t;
-struct STM32ADCBuffer {
-    TSTM32ADCSampleType* ptr;
-    uint32_t size;
-};
+bool STM32ADCConfiguration::isValid() const {
+    if (adcHalHandle == nullptr) {
+        return false;
+    }
+    if (buffer.ptr == nullptr) {
+        return false;
+    }
+    if (buffer.size == 0) {
+        return false;
+    }
+    return true;
+}
 
-struct STM32ADCConfiguration {
-    ADC_HandleTypeDef* adcHalHandle;
-    STM32ADCBuffer buffer;
-
-    STM32ADCConfiguration();
-    bool isValid() const;
-    void reset();
-};
-
-struct STM32ADC : public IADC {
-    EADCStatus init() override;
-    ~STM32ADC() {}
-    EADCStatus reset() override;
-    EADCStatus start() override;
-    EADCStatus stop() override;
-
-    bool setSpecificConfiguration(const STM32ADCConfiguration& configuration);
-    void getSpecificConfiguration(STM32ADCConfiguration& dest);
-
-private:
-    ADC_HandleTypeDef* mAdcHalHandle = nullptr;
-    STM32ADCConfiguration mSpecificConfiguration;
-};
-
-}  // namespace scilla
-
-#endif
+void STM32ADCConfiguration::reset() {
+    adcHalHandle = nullptr;
+    buffer.ptr = nullptr;
+    buffer.size = 0;
+}

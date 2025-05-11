@@ -21,45 +21,19 @@
  * SOFTWARE.
  */
 
-#include "InitCppWrapper.h"
+#ifndef SCILLA_LOGIC_DRIVERS_ADC_STM32ADC_S_T_M32_A_D_C_BUFFER_H_
+#define SCILLA_LOGIC_DRIVERS_ADC_STM32ADC_S_T_M32_A_D_C_BUFFER_H_
 
-#include "LoggerTask.h"
-#include "task/HeartbeatTask.h"
+#include <cstdint>
 
-using namespace scilla;
+namespace scilla {
 
-void HeartbeatTask_Init();
-void LoggerTask_Init();
+using TSTM32ADCSampleType = uint32_t;
+struct STM32ADCBuffer {
+    TSTM32ADCSampleType* ptr;
+    uint32_t size;
+};
 
-extern "C" {
-void Scilla_Initialize(void* args) {
-    (void)args;
+}  // namespace scilla
 
-    LoggerTask_Init();
-    HeartbeatTask_Init();
-
-    vTaskStartScheduler();
-}
-}
-
-void HeartbeatTask_Init() {
-    TaskParameters heartbeatTaskParameters;
-    heartbeatTaskParameters.priority = 20;
-    heartbeatTaskParameters.stackSize = 128;
-
-    ITask* heartbeatTask = HeartbeatTask::getInstance();
-    if (heartbeatTask->init(heartbeatTaskParameters) == ETaskStatus::eSuccess) {
-        heartbeatTask->start();
-    }
-}
-
-void LoggerTask_Init() {
-    TaskParameters loggerTaskParameters;
-    loggerTaskParameters.priority = 21;
-    loggerTaskParameters.stackSize = 128;
-
-    ITask* loggerTask = LoggerTask::getInstance();
-    if (loggerTask->init(loggerTaskParameters) == ETaskStatus::eSuccess) {
-        loggerTask->start();
-    }
-}
+#endif

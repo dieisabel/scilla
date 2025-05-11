@@ -26,9 +26,9 @@
 
 #include <cstdint>
 
-#include "adc/ADCConfiguration.h"
-#include "adc/EADCState.h"
-#include "adc/EADCStatus.h"
+#include "ADCConfiguration.h"
+#include "EADCState.h"
+#include "EADCStatus.h"
 
 namespace scilla {
 

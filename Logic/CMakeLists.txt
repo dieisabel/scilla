@@ -1,17 +1,3 @@
-add_subdirectory(apps)
-
-target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
-
-target_sources(${PROJECT_NAME} PRIVATE
-    InitCppWrapper.cpp
-
-    task/HeartbeatTask.cpp
-
-    adc/IADC.cpp
-    adc/STM32ADC.cpp
-    adc/ADCConfiguration.cpp
-)
-
 target_compile_options(${PROJECT_NAME} PRIVATE
     # Warnings
     "-Wall" "-Wextra" "-Wshadow" "-Wundef" "-Wconversion" "-Wno-common"
@@ -20,3 +6,7 @@ target_compile_options(${PROJECT_NAME} PRIVATE
     # Useful compile options
     "-fstack-usage"
 )
+
+add_subdirectory(core)
+add_subdirectory(drivers)
+add_subdirectory(apps)
