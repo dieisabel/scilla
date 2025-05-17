@@ -45,7 +45,7 @@ You can use VS Code for development. `.vscode/` directory contains all files rel
 
 #### 3.3.1 File templates
 
-`thinker.new-file-template` extension allows us to create files from templates. Project has a `cpp_class` template for creating C++ classes. You can use it using `<Mouse right click> -> New File from Template -> <Select files> -> <Enter class name> -> <Done>`.
+`thinker.new-file-template` extension allows us to create files from templates. Project has a `cpp_class` template for creating C++ classes and `task` template for creating FreeRTOS tasks. You can use them using `<Mouse right click> -> New File from Template -> <Select template> -> <Select files> -> <Enter class name> -> <Done>`.
 
 #### 3.3.2 Auto formatting
 
