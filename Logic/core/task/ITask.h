@@ -55,8 +55,10 @@ protected:
     TaskParameters mParameters;
     ETaskState mState = ETaskState::eNotInitialized;
     TaskHandle_t mRtosTaskHandle = NULL;
+    const char* mName = nullptr;
 
     ETaskStatus baseInit(TTaskCallback callback, const char* name);
+    ETaskStatus baseDestroy();
 };
 
 }  // namespace scilla

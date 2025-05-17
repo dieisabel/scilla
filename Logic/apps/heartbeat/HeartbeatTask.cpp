@@ -53,17 +53,7 @@ ETaskStatus HeartbeatTask::init(const TaskParameters& parameters) {
     return baseInit(Scilla_HeartbeatTask_CRun, "HeartbeatTask");
 }
 
-ETaskStatus HeartbeatTask::destroy() {
-    if (mState == ETaskState::eNotInitialized) {
-        return ETaskStatus::eNotInitialized;
-    }
-
-    if (mState == ETaskState::eRunning) {
-        stop();
-    }
-    vTaskDelete(mRtosTaskHandle);
-    return ETaskStatus::eSuccess;
-}
+ETaskStatus HeartbeatTask::destroy() { return baseDestroy(); }
 
 HeartbeatTask::~HeartbeatTask() { destroy(); }
 

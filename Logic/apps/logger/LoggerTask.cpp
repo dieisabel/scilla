@@ -52,17 +52,7 @@ ETaskStatus LoggerTask::init(const TaskParameters& parameters) {
     return baseInit(Scilla_LoggerTask_CRun, "LoggerTask");
 }
 
-ETaskStatus LoggerTask::destroy() {
-    if (mState == ETaskState::eNotInitialized) {
-        return ETaskStatus::eNotInitialized;
-    }
-
-    if (mState == ETaskState::eRunning) {
-        stop();
-    }
-    vTaskDelete(mRtosTaskHandle);
-    return ETaskStatus::eSuccess;
-}
+ETaskStatus LoggerTask::destroy() { return baseDestroy(); }
 
 LoggerTask::~LoggerTask() { destroy(); }
 
