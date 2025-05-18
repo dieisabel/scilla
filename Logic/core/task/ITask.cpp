@@ -27,20 +27,27 @@
 
 using namespace scilla;
 
-ETaskStatus ITask::baseInit(TTaskCallback callback, const char* name) {
-    if (name == nullptr) {
+ETaskStatus ITask::baseInit(TTaskCallback callback) {
+    if (mParameters.name == nullptr) {
+        trice(iD(6927), "err: invalid name\n");
         return ETaskStatus::eInvalidParameters;
     }
+    if (mParameters.stackBuffer == nullptr) {
+        TRICE_S(id(3860), "err:[%s]: stack buffer is nullptr\n", mParameters.name);
+        return ETaskStatus::eInvalidParameters;
+    }
+    /* Stack size must be validated by derived class */
 
-    BaseType_t status =
-        xTaskCreate(callback, name, mParameters.stackSize, NULL, mParameters.priority,
-                    &mRtosTaskHandle); /* TODO: Allocate static buffer for task */
-    if (status != pdPASS) {
+    mRtosTaskHandle = xTaskCreateStatic(callback, mParameters.name, mParameters.stackSize,
+                                        NULL, mParameters.priority,
+                                        mParameters.stackBuffer, &mRtosTaskTCBBuffer);
+    if (mRtosTaskHandle == NULL) {
+        TRICE_S(id(2759), "err:[%s]: task initialization error\n", mParameters.name);
         return ETaskStatus::eError;
     }
     vTaskSuspend(mRtosTaskHandle);
-    mName = name;
     mState = ETaskState::eSuspended;
+    TRICE_S(id(6008), "info:[%s]: task is initialized\n", mParameters.name);
     return ETaskStatus::eSuccess;
 }
 
@@ -52,6 +59,7 @@ ETaskStatus ITask::baseDestroy() {
         stop();
     }
     vTaskDelete(mRtosTaskHandle);
+    TRICE_S(id(3753), "info:[%s]: task is deleted\n", mParameters.name);
     return ETaskStatus::eSuccess;
 }
 
@@ -61,6 +69,8 @@ ETaskStatus ITask::reset() {
     }
     destroy();
     mState = ETaskState::eNotInitialized;
+    TRICE_S(id(4863), "info:[%s]: task state is changed to eNotInitialized\n",
+            mParameters.name);
     return ETaskStatus::eSuccess;
 }
 
@@ -69,6 +79,8 @@ ETaskStatus ITask::start() {
         case ETaskState::eSuspended:
             vTaskResume(mRtosTaskHandle);
             mState = ETaskState::eRunning;
+            TRICE_S(id(5021), "info:[%s]: task state is changed to eRunning\n",
+                    mParameters.name);
             return ETaskStatus::eSuccess;
         case ETaskState::eNotInitialized:
             return ETaskStatus::eNotInitialized;
@@ -85,6 +97,8 @@ ETaskStatus ITask::stop() {
         case ETaskState::eRunning:
             vTaskSuspend(mRtosTaskHandle);
             mState = ETaskState::eSuspended;
+            TRICE_S(id(1198), "info:[%s]: task state is changed to eSuspended\n",
+                    mParameters.name);
             return ETaskStatus::eSuccess;
         case ETaskState::eNotInitialized:
             return ETaskStatus::eNotInitialized;

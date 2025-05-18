@@ -21,32 +21,50 @@
  * SOFTWARE.
  */
 
-#ifndef SCILLA_LOGIC_APPS_LOGGER_TRICE_CONFIG_H_
-#define SCILLA_LOGIC_APPS_LOGGER_TRICE_CONFIG_H_
+#include "OscilloscopeTask.h"
 
 #include "FreeRTOS.h"
-#include "portmacro.h"
+#include "task.h"
+#include "trice.h"
 
-#ifdef __cplusplus
+using namespace scilla;
+
 extern "C" {
-#endif
+static void Scilla_OscilloscopeTask_CRun(void* args) {
+    (void)args;
+    OscilloscopeTask* task =
+        static_cast<OscilloscopeTask*>(OscilloscopeTask::getInstance());
 
-/* Output configuration */
-#define TRICE_DEFERRED_OUTPUT 1
-#define TRICE_BUFFER TRICE_RING_BUFFER
-#define TRICE_DEFERRED_BUFFER_SIZE 512
-#define TRICE_DEFERRED_TRANSFER_MODE TRICE_SINGLE_PACK_MODE
+    /* On initialization task might start running immediatly because of how FreeRTOS
+     * handles them. Wait here until first start is called */
+    while (task->getState() == ETaskState::eNotInitialized);
+    while (task->getState() == ETaskState::eSuspended);
 
-/* Output interface configuration */
-#define TRICE_DEFERRED_UARTA 1
-#define TRICE_UARTA USART2
-
-/* RTOS macros. MUST be used AFTER scheduler is started */
-#define TRICE_ENTER_CRITICAL_SECTION portDISABLE_INTERRUPTS();
-#define TRICE_LEAVE_CRITICAL_SECTION portENABLE_INTERRUPTS();
-
-#ifdef __cplusplus
+    task->_run(NULL);
+    task->destroy();
 }
-#endif
+}
 
-#endif
+ETaskStatus OscilloscopeTask::init(const TaskParameters& parameters) {
+    if (parameters.stackSize < kMinStackSize) {
+        return ETaskStatus::eInvalidParameters;
+    }
+    mParameters = parameters;
+    return baseInit(Scilla_OscilloscopeTask_CRun);
+}
+
+ETaskStatus OscilloscopeTask::destroy() { return baseDestroy(); }
+
+OscilloscopeTask::~OscilloscopeTask() { destroy(); }
+
+void OscilloscopeTask::_run(void* args) {
+    (void)args;
+
+    while (true) {
+    }
+}
+
+ITask* OscilloscopeTask::getInstance() {
+    static OscilloscopeTask instance;
+    return &instance;
+}

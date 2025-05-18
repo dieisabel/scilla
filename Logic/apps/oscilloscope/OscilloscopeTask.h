@@ -21,32 +21,27 @@
  * SOFTWARE.
  */
 
-#ifndef SCILLA_LOGIC_APPS_LOGGER_TRICE_CONFIG_H_
-#define SCILLA_LOGIC_APPS_LOGGER_TRICE_CONFIG_H_
+#ifndef SCILLA_LOGIC_APPS_OSCILLOSCOPE_OSCILLOSCOPE_TASK_H_
+#define SCILLA_LOGIC_APPS_OSCILLOSCOPE_OSCILLOSCOPE_TASK_H_
 
 #include "FreeRTOS.h"
-#include "portmacro.h"
+#include "task.h"
+#include "task/ITask.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+namespace scilla {
 
-/* Output configuration */
-#define TRICE_DEFERRED_OUTPUT 1
-#define TRICE_BUFFER TRICE_RING_BUFFER
-#define TRICE_DEFERRED_BUFFER_SIZE 512
-#define TRICE_DEFERRED_TRANSFER_MODE TRICE_SINGLE_PACK_MODE
+struct OscilloscopeTask : public ITask {
+    virtual ETaskStatus init(const TaskParameters& parameters) override;
+    virtual ETaskStatus destroy() override;
+    virtual ~OscilloscopeTask() override;
+    virtual void _run(void* args) override;
 
-/* Output interface configuration */
-#define TRICE_DEFERRED_UARTA 1
-#define TRICE_UARTA USART2
+    static ITask* getInstance();
 
-/* RTOS macros. MUST be used AFTER scheduler is started */
-#define TRICE_ENTER_CRITICAL_SECTION portDISABLE_INTERRUPTS();
-#define TRICE_LEAVE_CRITICAL_SECTION portENABLE_INTERRUPTS();
+private:
+    static constexpr uint8_t kMinStackSize = 128;
+};
 
-#ifdef __cplusplus
-}
-#endif
+}  // namespace scilla
 
 #endif

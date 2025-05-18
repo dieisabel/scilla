@@ -49,7 +49,7 @@ ETaskStatus LoggerTask::init(const TaskParameters& parameters) {
         return ETaskStatus::eInvalidParameters;
     }
     mParameters = parameters;
-    return baseInit(Scilla_LoggerTask_CRun, "LoggerTask");
+    return baseInit(Scilla_LoggerTask_CRun);
 }
 
 ETaskStatus LoggerTask::destroy() { return baseDestroy(); }

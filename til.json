@@ -1,10 +1,42 @@
 {
-	"2015": {
-		"Type": "trice",
-		"Strg": "Beat\\n"
+	"1198": {
+		"Type": "TRICE_S",
+		"Strg": "info:[%s]: task state is changed to eSuspended\\n"
 	},
-	"5369": {
+	"2759": {
+		"Type": "TRICE_S",
+		"Strg": "err:[%s]: task initialization error\\n"
+	},
+	"3472": {
 		"Type": "trice",
-		"Strg": "Beat\\n"
+		"Strg": "[HeartbeatTask]: beat\\n"
+	},
+	"3753": {
+		"Type": "TRICE_S",
+		"Strg": "info:[%s]: task is deleted\\n"
+	},
+	"3860": {
+		"Type": "TRICE_S",
+		"Strg": "err:[%s]: stack buffer is nullptr\\n"
+	},
+	"3895": {
+		"Type": "trice",
+		"Strg": "[HeartbeatTask]: beat\\n"
+	},
+	"4863": {
+		"Type": "TRICE_S",
+		"Strg": "info:[%s]: task state is changed to eNotInitialized\\n"
+	},
+	"5021": {
+		"Type": "TRICE_S",
+		"Strg": "info:[%s]: task state is changed to eRunning\\n"
+	},
+	"6008": {
+		"Type": "TRICE_S",
+		"Strg": "info:[%s]: task is initialized\\n"
+	},
+	"6927": {
+		"Type": "trice",
+		"Strg": "err: invalid name\\n"
 	}
 }

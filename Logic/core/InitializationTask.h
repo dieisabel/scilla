@@ -21,29 +21,20 @@
  * SOFTWARE.
  */
 
-#ifndef SCILLA_LOGIC_APPS_LOGGER_TRICE_CONFIG_H_
-#define SCILLA_LOGIC_APPS_LOGGER_TRICE_CONFIG_H_
+/**
+ * @brief Header file for initialization task, which is responsible for initializing all
+ * other tasks
+ */
 
-#include "FreeRTOS.h"
-#include "portmacro.h"
+#ifndef SCILLA_LOGIC_CORE_INITIALIZATION_TASK_H_
+#define SCILLA_LOGIC_CORE_INITIALIZATION_TASK_H_
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-/* Output configuration */
-#define TRICE_DEFERRED_OUTPUT 1
-#define TRICE_BUFFER TRICE_RING_BUFFER
-#define TRICE_DEFERRED_BUFFER_SIZE 512
-#define TRICE_DEFERRED_TRANSFER_MODE TRICE_SINGLE_PACK_MODE
-
-/* Output interface configuration */
-#define TRICE_DEFERRED_UARTA 1
-#define TRICE_UARTA USART2
-
-/* RTOS macros. MUST be used AFTER scheduler is started */
-#define TRICE_ENTER_CRITICAL_SECTION portDISABLE_INTERRUPTS();
-#define TRICE_LEAVE_CRITICAL_SECTION portENABLE_INTERRUPTS();
+void Scilla_InitializationTask_Init(void* arg);
+void Scilla_InitializationTask_CRun(void* arg);
 
 #ifdef __cplusplus
 }

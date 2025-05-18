@@ -25,6 +25,7 @@
 #define SCILLA_LOGIC_TASK_I_TASK_H_
 
 #include "FreeRTOS.h"
+#include "portmacro.h"
 #include "task.h"
 #include "task/ETaskState.h"
 #include "task/ETaskStatus.h"
@@ -54,10 +55,10 @@ struct ITask {
 protected:
     TaskParameters mParameters;
     ETaskState mState = ETaskState::eNotInitialized;
-    TaskHandle_t mRtosTaskHandle = NULL;
-    const char* mName = nullptr;
+    StaticTask_t mRtosTaskTCBBuffer;
+    TaskHandle_t mRtosTaskHandle = nullptr;
 
-    ETaskStatus baseInit(TTaskCallback callback, const char* name);
+    ETaskStatus baseInit(TTaskCallback callback);
     ETaskStatus baseDestroy();
 };
 

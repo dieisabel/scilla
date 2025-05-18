@@ -90,6 +90,9 @@ void HardFault_Handler(void)
 {
   /* USER CODE BEGIN HardFault_IRQn 0 */
 
+  /* TODO: implement interrupt handler in Scilla domain. Also better to create a
+   * wrappers of all registers for better view */
+
   /* Memory management faults */
 
   uint32_t CFSR_IACCVIOL = READ_BIT(SCB->CFSR, SCB_CFSR_IACCVIOL_Msk);
@@ -152,6 +155,9 @@ void HardFault_Handler(void)
 
   uint32_t CFSR_DIVBYZERO = READ_BIT(SCB->CFSR, SCB_CFSR_DIVBYZERO_Msk);
   (void)CFSR_DIVBYZERO;
+
+  uint32_t BFAR = SCB->BFAR;
+  (void)BFAR;
 
   /* USER CODE END HardFault_IRQn 0 */
   while (1)
@@ -269,19 +275,6 @@ void TIM6_DAC_IRQHandler(void)
   /* USER CODE BEGIN TIM6_DAC_IRQn 1 */
 
   /* USER CODE END TIM6_DAC_IRQn 1 */
-}
-
-/**
-  * @brief This function handles DMAMUX overrun interrupt.
-  */
-void DMAMUX_OVR_IRQHandler(void)
-{
-  /* USER CODE BEGIN DMAMUX_OVR_IRQn 0 */
-
-  /* USER CODE END DMAMUX_OVR_IRQn 0 */
-  /* USER CODE BEGIN DMAMUX_OVR_IRQn 1 */
-
-  /* USER CODE END DMAMUX_OVR_IRQn 1 */
 }
 
 /* USER CODE BEGIN 1 */

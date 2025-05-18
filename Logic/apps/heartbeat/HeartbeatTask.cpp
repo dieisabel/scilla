@@ -50,7 +50,7 @@ ETaskStatus HeartbeatTask::init(const TaskParameters& parameters) {
         return ETaskStatus::eInvalidParameters;
     }
     mParameters = parameters;
-    return baseInit(Scilla_HeartbeatTask_CRun, "HeartbeatTask");
+    return baseInit(Scilla_HeartbeatTask_CRun);
 }
 
 ETaskStatus HeartbeatTask::destroy() { return baseDestroy(); }
@@ -61,11 +61,11 @@ void HeartbeatTask::_run(void* args) {
     (void)args;
 
     while (true) {
-        trice(iD(5369), "Beat\n");
+        trice(iD(3472), "[HeartbeatTask]: beat\n");
         BSP_LED_Off(LED_GREEN);
         vTaskDelay(pdMS_TO_TICKS(1000));
 
-        trice(iD(2015), "Beat\n");
+        trice(iD(3895), "[HeartbeatTask]: beat\n");
         BSP_LED_On(LED_GREEN);
         vTaskDelay(pdMS_TO_TICKS(1000));
     }

@@ -23,43 +23,26 @@
 
 #include "InitCppWrapper.h"
 
-#include "HeartbeatTask.h"
-#include "LoggerTask.h"
+#include "FreeRTOS.h"
+#include "InitializationTask.h"
+#include "stm32g4xx_hal.h"
+#include "task.h"
 
-using namespace scilla;
-
-void HeartbeatTask_Init();
-void LoggerTask_Init();
+static void Hardware_Init();
 
 extern "C" {
 void Scilla_Initialize(void* args) {
     (void)args;
 
-    LoggerTask_Init();
-    HeartbeatTask_Init();
-
+    Hardware_Init();
+    Scilla_InitializationTask_Init(NULL);
     vTaskStartScheduler();
 }
 }
 
-void HeartbeatTask_Init() {
-    TaskParameters heartbeatTaskParameters;
-    heartbeatTaskParameters.priority = 20;
-    heartbeatTaskParameters.stackSize = 128;
-
-    ITask* heartbeatTask = HeartbeatTask::getInstance();
-    if (heartbeatTask->init(heartbeatTaskParameters) == ETaskStatus::eSuccess) {
-        heartbeatTask->start();
-    }
-}
-
-void LoggerTask_Init() {
-    TaskParameters loggerTaskParameters;
-    loggerTaskParameters.priority = 21;
-    loggerTaskParameters.stackSize = 128;
-
-    ITask* loggerTask = LoggerTask::getInstance();
-    if (loggerTask->init(loggerTaskParameters) == ETaskStatus::eSuccess) {
-        loggerTask->start();
-    }
+static void Hardware_Init() {
+#ifdef DEBUG
+    /* Disable write buffers. Reduces performance, but makes all bus faults precise */
+    SET_BIT(SCnSCB->ACTLR, SCnSCB_ACTLR_DISDEFWBUF_Msk);
+#endif
 }

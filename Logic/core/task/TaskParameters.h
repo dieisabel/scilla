@@ -26,11 +26,16 @@
 
 #include <cstdint>
 
+#include "portmacro.h"
+
 namespace scilla {
 
+/* TODO: Add validation so client can validate parameters and use it in ITask */
 struct TaskParameters {
     uint8_t priority;
-    uint16_t stackSize;
+    StackType_t* stackBuffer;
+    uint32_t stackSize;
+    const char* name;
     void* other;
 };
 
