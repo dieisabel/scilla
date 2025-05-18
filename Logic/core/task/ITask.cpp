@@ -36,13 +36,11 @@ ETaskStatus ITask::baseInit(TTaskCallback callback, const char* name) {
         xTaskCreate(callback, name, mParameters.stackSize, NULL, mParameters.priority,
                     &mRtosTaskHandle); /* TODO: Allocate static buffer for task */
     if (status != pdPASS) {
-        TRICE_S(id(6731), "[ERROR][%s]: task is not created\n", name);
         return ETaskStatus::eError;
     }
     vTaskSuspend(mRtosTaskHandle);
     mName = name;
     mState = ETaskState::eSuspended;
-    TRICE_S(id(7448), "[INFO][%s]: task is created\n", mName);
     return ETaskStatus::eSuccess;
 }
 
@@ -63,7 +61,6 @@ ETaskStatus ITask::reset() {
     }
     destroy();
     mState = ETaskState::eNotInitialized;
-    TRICE_S(id(7006), "[DEBUG][%s]: task state is changed to eNotInitialized\n", mName);
     return ETaskStatus::eSuccess;
 }
 
@@ -72,7 +69,6 @@ ETaskStatus ITask::start() {
         case ETaskState::eSuspended:
             vTaskResume(mRtosTaskHandle);
             mState = ETaskState::eRunning;
-            TRICE_S(id(4928), "[DEBUG][%s]: task state is changed to eRunning\n", mName);
             return ETaskStatus::eSuccess;
         case ETaskState::eNotInitialized:
             return ETaskStatus::eNotInitialized;
@@ -89,8 +85,6 @@ ETaskStatus ITask::stop() {
         case ETaskState::eRunning:
             vTaskSuspend(mRtosTaskHandle);
             mState = ETaskState::eSuspended;
-            TRICE_S(id(7451), "[DEBUG][%s]: task state is changed to eSuspended\n",
-                    mName);
             return ETaskStatus::eSuccess;
         case ETaskState::eNotInitialized:
             return ETaskStatus::eNotInitialized;

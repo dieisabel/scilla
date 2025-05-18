@@ -3,28 +3,8 @@
 		"Type": "trice",
 		"Strg": "Beat\\n"
 	},
-	"4928": {
-		"Type": "TRICE_S",
-		"Strg": "[DEBUG][%s]: task state is changed to eRunning\\n"
-	},
 	"5369": {
 		"Type": "trice",
 		"Strg": "Beat\\n"
-	},
-	"6731": {
-		"Type": "TRICE_S",
-		"Strg": "[ERROR][%s]: task is not created\\n"
-	},
-	"7006": {
-		"Type": "TRICE_S",
-		"Strg": "[DEBUG][%s]: task state is changed to eNotInitialized\\n"
-	},
-	"7448": {
-		"Type": "TRICE_S",
-		"Strg": "[INFO][%s]: task is created\\n"
-	},
-	"7451": {
-		"Type": "TRICE_S",
-		"Strg": "[DEBUG][%s]: task state is changed to eSuspended\\n"
 	}
 }

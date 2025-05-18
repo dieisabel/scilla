@@ -3,28 +3,8 @@
 		"File": "HeartbeatTask.cpp",
 		"Line": 68
 	},
-	"4928": {
-		"File": "ITask.cpp",
-		"Line": 75
-	},
 	"5369": {
 		"File": "HeartbeatTask.cpp",
 		"Line": 64
-	},
-	"6731": {
-		"File": "ITask.cpp",
-		"Line": 39
-	},
-	"7006": {
-		"File": "ITask.cpp",
-		"Line": 66
-	},
-	"7448": {
-		"File": "ITask.cpp",
-		"Line": 45
-	},
-	"7451": {
-		"File": "ITask.cpp",
-		"Line": 92
 	}
 }
