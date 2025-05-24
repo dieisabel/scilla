@@ -26,6 +26,8 @@
 
 #include <cstdint>
 
+#include "ADCBuffer.h"
+
 namespace scilla {
 
 enum class EADCSamplingTime : uint8_t {
@@ -57,6 +59,7 @@ struct ADCConfiguration {
     uint32_t frequency;
 
     ADCConfiguration();
+    bool isValid() const;
 };
 
 }  // namespace scilla

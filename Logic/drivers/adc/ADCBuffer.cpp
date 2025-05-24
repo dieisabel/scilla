@@ -21,29 +21,23 @@
  * SOFTWARE.
  */
 
-#ifndef SCILLA_LOGIC_ADC_STM32_ADC_H_
-#define SCILLA_LOGIC_ADC_STM32_ADC_H_
+#include "ADCBuffer.h"
 
-#include "IADC.h"
-#include "STM32ADCConfiguration.h"
+using namespace scilla;
 
-namespace scilla {
+ADCBuffer::ADCBuffer() { reset(); }
 
-struct STM32ADC : public IADC {
-    EADCStatus init() override;
-    ~STM32ADC() {}
-    EADCStatus reset() override;
-    EADCStatus start() override;
-    EADCStatus stop() override;
-    EADCStatus applyConfiguration() override;
+bool ADCBuffer::isValid() const {
+    if (ptr == nullptr) {
+        return false;
+    }
+    if (size == 0) {
+        return false;
+    }
+    return true;
+}
 
-    bool setSpecificConfiguration(const STM32ADCConfiguration& configuration);
-    void getSpecificConfiguration(STM32ADCConfiguration& dest);
-
-private:
-    STM32ADCConfiguration mSpecificConfiguration;
-};
-
-}  // namespace scilla
-
-#endif
+void ADCBuffer::reset() {
+    ptr = nullptr;
+    size = 0;
+}

@@ -40,10 +40,7 @@ struct IADC {
     virtual EADCStatus reset() = 0;
     virtual EADCStatus start() = 0;
     virtual EADCStatus stop() = 0;
-
-protected:
-    EADCState mState = EADCState::eNotInitialized;
-    ADCConfiguration mConfiguration;
+    virtual EADCStatus applyConfiguration() = 0;
 
     EADCState getState();
 
@@ -61,6 +58,16 @@ protected:
 
     EADCStatus setFrequency(uint32_t frequency);
     EADCStatus getFrequency(uint32_t& dest);
+
+    EADCStatus setBuffer(const ADCBuffer& buffer);
+    EADCStatus getBuffer(ADCBuffer& dest);
+
+protected:
+    EADCState mState = EADCState::eNotInitialized;
+    ADCConfiguration mConfiguration;
+    ADCBuffer mBuffer;
+
+    bool baseInit();
 };
 
 }  // namespace scilla

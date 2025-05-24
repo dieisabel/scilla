@@ -24,7 +24,6 @@
 #ifndef SCILLA_LOGIC_DRIVERS_ADC_STM32ADC_S_T_M32_A_D_C_CONFIGURATION_H_
 #define SCILLA_LOGIC_DRIVERS_ADC_STM32ADC_S_T_M32_A_D_C_CONFIGURATION_H_
 
-#include "STM32ADCBuffer.h"
 #include "adc.h"
 #include "tim.h"
 
@@ -33,7 +32,6 @@ namespace scilla {
 struct STM32ADCConfiguration {
     ADC_HandleTypeDef* adcHalHandle;
     TIM_HandleTypeDef* timHalHandle;
-    STM32ADCBuffer buffer;
 
     STM32ADCConfiguration();
     bool isValid() const;

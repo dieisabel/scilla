@@ -21,17 +21,21 @@
  * SOFTWARE.
  */
 
-#ifndef SCILLA_LOGIC_DRIVERS_ADC_STM32ADC_S_T_M32_A_D_C_BUFFER_H_
-#define SCILLA_LOGIC_DRIVERS_ADC_STM32ADC_S_T_M32_A_D_C_BUFFER_H_
+#ifndef SCILLA_LOGIC_DRIVERS_ADC_A_D_C_BUFFER_H_
+#define SCILLA_LOGIC_DRIVERS_ADC_A_D_C_BUFFER_H_
 
 #include <cstdint>
 
 namespace scilla {
 
-using TSTM32ADCSampleType = uint32_t;
-struct STM32ADCBuffer {
-    TSTM32ADCSampleType* ptr;
+using TADCSampleType = uint32_t;
+struct ADCBuffer {
+    TADCSampleType* ptr;
     uint32_t size;
+
+    ADCBuffer();
+    bool isValid() const;
+    void reset();
 };
 
 }  // namespace scilla

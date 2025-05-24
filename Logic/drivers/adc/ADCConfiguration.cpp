@@ -31,3 +31,10 @@ ADCConfiguration::ADCConfiguration() {
     resolution = EADCResolution::e12Bit;
     frequency = 0;
 }
+
+bool ADCConfiguration::isValid() const {
+    if (frequency == 0) {
+        return false;
+    }
+    return true;
+}

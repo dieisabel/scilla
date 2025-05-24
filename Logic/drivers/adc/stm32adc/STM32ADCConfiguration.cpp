@@ -34,18 +34,10 @@ bool STM32ADCConfiguration::isValid() const {
     if (timHalHandle == nullptr) {
         return false;
     }
-    if (buffer.ptr == nullptr) {
-        return false;
-    }
-    if (buffer.size == 0) {
-        return false;
-    }
     return true;
 }
 
 void STM32ADCConfiguration::reset() {
     adcHalHandle = nullptr;
     timHalHandle = nullptr;
-    buffer.ptr = nullptr;
-    buffer.size = 0;
 }

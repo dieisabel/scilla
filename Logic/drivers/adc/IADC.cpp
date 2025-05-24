@@ -131,3 +131,26 @@ EADCStatus IADC::getFrequency(uint32_t& dest) {
     dest = mConfiguration.frequency;
     return EADCStatus::eSuccess;
 }
+
+EADCStatus IADC::setBuffer(const ADCBuffer& buffer) {
+    if (mState == EADCState::eNotInitialized) {
+        return EADCStatus::eNotInitialized;
+    }
+    if (mState == EADCState::eConverting) {
+        return EADCStatus::eErrorStarted;
+    }
+
+    mBuffer = buffer;
+    return EADCStatus::eSuccess;
+}
+
+EADCStatus IADC::getBuffer(ADCBuffer& dest) {
+    if (mState == EADCState::eNotInitialized) {
+        return EADCStatus::eNotInitialized;
+    }
+
+    dest = mBuffer;
+    return EADCStatus::eSuccess;
+}
+
+bool IADC::baseInit() { return mConfiguration.isValid(); }
