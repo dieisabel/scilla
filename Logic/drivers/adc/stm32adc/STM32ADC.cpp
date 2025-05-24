@@ -39,12 +39,17 @@ void STM32ADC::getSpecificConfiguration(STM32ADCConfiguration& dest) {
 
 EADCStatus STM32ADC::init() {
     if (mSpecificConfiguration.isValid() == false) {
-        return EADCStatus::eError;
+        return EADCStatus::eErrorInvalidParameter;
     }
     if (HAL_ADC_GetState(mSpecificConfiguration.adcHalHandle) != HAL_ADC_STATE_READY) {
-        return EADCStatus::eError;
+        return EADCStatus::eErrorInvalidParameter;
     }
-    /* TODO: stop convertions if state is converting */
+    if (HAL_TIM_Base_GetState(mSpecificConfiguration.timHalHandle) !=
+        HAL_TIM_STATE_READY) {
+        return EADCStatus::eErrorInvalidParameter;
+    }
+
+    (void)stop();
     mState = EADCState::eIdle;
     return EADCStatus::eSuccess;
 }
@@ -53,7 +58,7 @@ EADCStatus STM32ADC::reset() {
     if (mState == EADCState::eNotInitialized) {
         return EADCStatus::eNotInitialized;
     }
-    /* TODO: stop convertions if state is converting */
+    (void)stop();
     mState = EADCState::eNotInitialized;
     return EADCStatus::eSuccess;
 }
@@ -72,6 +77,13 @@ EADCStatus STM32ADC::start() {
     if (status != HAL_OK) {
         return EADCStatus::eError;
     }
+
+    status = HAL_TIM_Base_Start(mSpecificConfiguration.timHalHandle);
+    if (status != HAL_OK) {
+        (void)HAL_ADC_Stop_DMA(mSpecificConfiguration.adcHalHandle);
+        return EADCStatus::eError;
+    }
+
     mState = EADCState::eConverting;
     return EADCStatus::eSuccess;
 }
@@ -84,6 +96,9 @@ EADCStatus STM32ADC::stop() {
         return EADCStatus::eNotStarted;
     }
 
+    /* To stop timer HAL just modifies some registers, this function cannot return
+     * something other than HAL_OK */
+    (void)HAL_TIM_Base_Stop(mSpecificConfiguration.timHalHandle);
     HAL_StatusTypeDef status = HAL_ADC_Stop_DMA(mSpecificConfiguration.adcHalHandle);
     if (status != HAL_OK) {
         return EADCStatus::eError;

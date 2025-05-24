@@ -26,11 +26,13 @@
 
 #include "STM32ADCBuffer.h"
 #include "adc.h"
+#include "tim.h"
 
 namespace scilla {
 
 struct STM32ADCConfiguration {
     ADC_HandleTypeDef* adcHalHandle;
+    TIM_HandleTypeDef* timHalHandle;
     STM32ADCBuffer buffer;
 
     STM32ADCConfiguration();

@@ -40,7 +40,6 @@ struct STM32ADC : public IADC {
     void getSpecificConfiguration(STM32ADCConfiguration& dest);
 
 private:
-    ADC_HandleTypeDef* mAdcHalHandle = nullptr;
     STM32ADCConfiguration mSpecificConfiguration;
 };
 
