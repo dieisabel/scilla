@@ -49,6 +49,16 @@ ETaskStatus OscilloscopeTask::init(const TaskParameters& parameters) {
     if (parameters.stackSize < kMinStackSize) {
         return ETaskStatus::eInvalidParameters;
     }
+
+    /* WARNING! Unsafe cast! */
+    OscilloscopeTaskParameters* specificParameters =
+        reinterpret_cast<OscilloscopeTaskParameters*>(parameters.other);
+    if (specificParameters->isValid() == false) {
+        trice(iD(7752), "err:[OscilloscopeTask]: invalid specific parameters\n");
+        return ETaskStatus::eInvalidParameters;
+    }
+
+    mSpecificParameters = *specificParameters;
     mParameters = parameters;
     return baseInit(Scilla_OscilloscopeTask_CRun);
 }
@@ -58,7 +68,7 @@ ETaskStatus OscilloscopeTask::destroy() { return baseDestroy(); }
 OscilloscopeTask::~OscilloscopeTask() { destroy(); }
 
 void OscilloscopeTask::_run(void* args) {
-    (void)args;
+    (void)args; /* Specific parameters are located in mSpecificParameters */
 
     while (true) {
     }

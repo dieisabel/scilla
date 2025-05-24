@@ -26,9 +26,11 @@
 #include <cstdint>
 #include <cstring>
 
+#include "Drivers.h"
 #include "HeartbeatTask.h"
 #include "LoggerTask.h"
 #include "OscilloscopeTask.h"
+#include "OscilloscopeTaskParameters.h"
 
 using namespace scilla;
 
@@ -109,12 +111,15 @@ static void OscilloscopeTask_Init() {
     std::memset(OscilloscopeTask_Stack, 0,
                 OscilloscopeTask_StackSize * sizeof(StackType_t));
 
+    OscilloscopeTaskParameters specificParameters;
+    specificParameters.adcDriver = &drivers::gSTM32ADC2Driver;
+
     TaskParameters parameters;
     parameters.priority = 21;
     parameters.stackSize = OscilloscopeTask_StackSize;
     parameters.stackBuffer = OscilloscopeTask_Stack;
     parameters.name = "OscilloscopeTask";
-    parameters.other = nullptr;
+    parameters.other = &specificParameters;
 
     ITask* task = OscilloscopeTask::getInstance();
     if (task->init(parameters) == ETaskStatus::eSuccess) {

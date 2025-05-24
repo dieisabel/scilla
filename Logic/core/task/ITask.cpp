@@ -39,10 +39,10 @@ ETaskStatus ITask::baseInit(TTaskCallback callback) {
     /* Stack size must be validated by derived class */
 
     mRtosTaskHandle = xTaskCreateStatic(callback, mParameters.name, mParameters.stackSize,
-                                        NULL, mParameters.priority,
+                                        mParameters.other, mParameters.priority,
                                         mParameters.stackBuffer, &mRtosTaskTCBBuffer);
     if (mRtosTaskHandle == NULL) {
-        TRICE_S(id(2759), "err:[%s]: task initialization error\n", mParameters.name);
+        TRICE_S(id(3441), "err:[%s]: task creation error\n", mParameters.name);
         return ETaskStatus::eError;
     }
     vTaskSuspend(mRtosTaskHandle);

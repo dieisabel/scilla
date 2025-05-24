@@ -11,6 +11,10 @@
 		"Type": "trice",
 		"Strg": "error:[Drivers_Init]: STM32ADC2 driver is not initialized\\n"
 	},
+	"3441": {
+		"Type": "TRICE_S",
+		"Strg": "err:[%s]: task creation error\\n"
+	},
 	"3472": {
 		"Type": "trice",
 		"Strg": "[HeartbeatTask]: beat\\n"
@@ -42,6 +46,10 @@
 	"6927": {
 		"Type": "trice",
 		"Strg": "err: invalid name\\n"
+	},
+	"7752": {
+		"Type": "trice",
+		"Strg": "err:[OscilloscopeTask]: invalid specific parameters\\n"
 	},
 	"7845": {
 		"Type": "trice",

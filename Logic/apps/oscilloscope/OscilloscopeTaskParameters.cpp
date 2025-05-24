@@ -21,30 +21,16 @@
  * SOFTWARE.
  */
 
-#ifndef SCILLA_LOGIC_APPS_OSCILLOSCOPE_OSCILLOSCOPE_TASK_H_
-#define SCILLA_LOGIC_APPS_OSCILLOSCOPE_OSCILLOSCOPE_TASK_H_
-
-#include "FreeRTOS.h"
 #include "OscilloscopeTaskParameters.h"
-#include "task.h"
-#include "task/ITask.h"
 
-namespace scilla {
+#include "DriversUtils.h"
 
-struct OscilloscopeTask : public ITask {
-    virtual ETaskStatus init(const TaskParameters& parameters) override;
-    virtual ETaskStatus destroy() override;
-    virtual ~OscilloscopeTask() override;
-    virtual void _run(void* args) override;
+using namespace scilla;
 
-    static ITask* getInstance();
+OscilloscopeTaskParameters::OscilloscopeTaskParameters() { reset(); }
 
-private:
-    static constexpr uint8_t kMinStackSize = 128;
+bool OscilloscopeTaskParameters::isValid() const {
+    return drivers::isValidADCDriverAddress(adcDriver);
+}
 
-    OscilloscopeTaskParameters mSpecificParameters;
-};
-
-}  // namespace scilla
-
-#endif
+void OscilloscopeTaskParameters::reset() { adcDriver = nullptr; }
