@@ -21,34 +21,17 @@
  * SOFTWARE.
  */
 
-#ifndef SCILLA_LOGIC_APPS_LOGGER_TRICE_CONFIG_H_
-#define SCILLA_LOGIC_APPS_LOGGER_TRICE_CONFIG_H_
+#ifndef SCILLA_LOGIC_DRIVERS_DRIVERS_H_
+#define SCILLA_LOGIC_DRIVERS_DRIVERS_H_
 
-#include "FreeRTOS.h"
-#include "portmacro.h"
+#include "STM32ADC.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+namespace scilla {
+namespace drivers {
 
-#define TRICE_CLEAN 0
+extern STM32ADC gSTM32ADC2Driver;
 
-/* Output configuration */
-#define TRICE_DEFERRED_OUTPUT 1
-#define TRICE_BUFFER TRICE_RING_BUFFER
-#define TRICE_DEFERRED_BUFFER_SIZE 512
-#define TRICE_DEFERRED_TRANSFER_MODE TRICE_SINGLE_PACK_MODE
-
-/* Output interface configuration */
-#define TRICE_DEFERRED_UARTA 1
-#define TRICE_UARTA USART2
-
-/* RTOS macros. MUST be used AFTER scheduler is started */
-#define TRICE_ENTER_CRITICAL_SECTION portDISABLE_INTERRUPTS();
-#define TRICE_LEAVE_CRITICAL_SECTION portENABLE_INTERRUPTS();
-
-#ifdef __cplusplus
 }
-#endif
+}  // namespace scilla
 
 #endif

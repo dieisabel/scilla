@@ -1,2 +1,7 @@
 add_subdirectory(adc)
 add_subdirectory(timer)
+
+target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+target_sources(${PROJECT_NAME} PRIVATE
+    InitDrivers.cpp
+)

@@ -24,9 +24,12 @@
 #include "InitCppWrapper.h"
 
 #include "FreeRTOS.h"
+#include "InitDrivers.h"
 #include "InitializationTask.h"
 #include "stm32g4xx_hal.h"
 #include "task.h"
+
+using namespace scilla;
 
 static void Hardware_Init();
 
@@ -35,6 +38,7 @@ void Scilla_Initialize(void* args) {
     (void)args;
 
     Hardware_Init();
+    Drivers_Init();
     Scilla_InitializationTask_Init(NULL);
     vTaskStartScheduler();
 }

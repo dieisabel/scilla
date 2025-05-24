@@ -21,34 +21,31 @@
  * SOFTWARE.
  */
 
-#ifndef SCILLA_LOGIC_APPS_LOGGER_TRICE_CONFIG_H_
-#define SCILLA_LOGIC_APPS_LOGGER_TRICE_CONFIG_H_
+#include "InitDrivers.h"
 
-#include "FreeRTOS.h"
-#include "portmacro.h"
+#include "Drivers.h"
+#include "trice.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+using namespace scilla;
 
-#define TRICE_CLEAN 0
+static void STM32ADC2_Init();
 
-/* Output configuration */
-#define TRICE_DEFERRED_OUTPUT 1
-#define TRICE_BUFFER TRICE_RING_BUFFER
-#define TRICE_DEFERRED_BUFFER_SIZE 512
-#define TRICE_DEFERRED_TRANSFER_MODE TRICE_SINGLE_PACK_MODE
+STM32ADC drivers::gSTM32ADC2Driver;
 
-/* Output interface configuration */
-#define TRICE_DEFERRED_UARTA 1
-#define TRICE_UARTA USART2
+void scilla::Drivers_Init() { STM32ADC2_Init(); }
 
-/* RTOS macros. MUST be used AFTER scheduler is started */
-#define TRICE_ENTER_CRITICAL_SECTION portDISABLE_INTERRUPTS();
-#define TRICE_LEAVE_CRITICAL_SECTION portENABLE_INTERRUPTS();
+static void STM32ADC2_Init() {
+    STM32ADCConfiguration specificConfiguration;
+    specificConfiguration.adcHalHandle = &hadc2;
+    specificConfiguration.timHalHandle = &htim3;
 
-#ifdef __cplusplus
+    ADCConfiguration baseConfiguration;
+
+    (void)drivers::gSTM32ADC2Driver.setSpecificConfiguration(specificConfiguration);
+    (void)drivers::gSTM32ADC2Driver.setConfiguration(baseConfiguration);
+    if (drivers::gSTM32ADC2Driver.init() == EADCStatus::eSuccess) {
+        trice(iD(3042), "error:[Drivers_Init]: STM32ADC2 driver is not initialized\n");
+    } else {
+        trice(iD(7845), "info:[Drivers_Init]: STM32ADC2 driver is initialized\n");
+    }
 }
-#endif
-
-#endif

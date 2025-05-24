@@ -7,6 +7,10 @@
 		"File": "ITask.cpp",
 		"Line": 45
 	},
+	"3042": {
+		"File": "InitDrivers.cpp",
+		"Line": 47
+	},
 	"3472": {
 		"File": "HeartbeatTask.cpp",
 		"Line": 64
@@ -38,5 +42,9 @@
 	"6927": {
 		"File": "ITask.cpp",
 		"Line": 32
+	},
+	"7845": {
+		"File": "InitDrivers.cpp",
+		"Line": 49
 	}
 }

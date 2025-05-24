@@ -7,6 +7,10 @@
 		"Type": "TRICE_S",
 		"Strg": "err:[%s]: task initialization error\\n"
 	},
+	"3042": {
+		"Type": "trice",
+		"Strg": "error:[Drivers_Init]: STM32ADC2 driver is not initialized\\n"
+	},
 	"3472": {
 		"Type": "trice",
 		"Strg": "[HeartbeatTask]: beat\\n"
@@ -38,5 +42,9 @@
 	"6927": {
 		"Type": "trice",
 		"Strg": "err: invalid name\\n"
+	},
+	"7845": {
+		"Type": "trice",
+		"Strg": "info:[Drivers_Init]: STM32ADC2 driver is initialized\\n"
 	}
 }
