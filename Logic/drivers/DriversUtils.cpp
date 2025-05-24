@@ -21,29 +21,15 @@
  * SOFTWARE.
  */
 
-#include "STM32ADCConfiguration.h"
+#include "DriversUtils.h"
+
+#include "Drivers.h"
 
 using namespace scilla;
 
-STM32ADCConfiguration::STM32ADCConfiguration() { reset(); }
-
-bool STM32ADCConfiguration::isValid() const {
-    if (adcHalHandle == nullptr) {
-        return false;
+bool drivers::isValidADCDriverAddress(IADC* driverPtr) {
+    if (driverPtr == &drivers::gSTM32ADC2Driver) {
+        return true;
     }
-    if (IS_ADC_ALL_INSTANCE(adcHalHandle->Instance) == false) {
-        return false;
-    }
-    if (timHalHandle == nullptr) {
-        return false;
-    }
-    if (IS_TIM_INSTANCE(timHalHandle->Instance) == false) {
-        return false;
-    }
-    return true;
-}
-
-void STM32ADCConfiguration::reset() {
-    adcHalHandle = nullptr;
-    timHalHandle = nullptr;
+    return false;
 }

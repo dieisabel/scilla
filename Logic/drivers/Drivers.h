@@ -31,7 +31,7 @@ namespace drivers {
 
 extern STM32ADC gSTM32ADC2Driver;
 
-}
+}  // namespace drivers
 }  // namespace scilla
 
 #endif

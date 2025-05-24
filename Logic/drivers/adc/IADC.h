@@ -66,8 +66,6 @@ protected:
     EADCState mState = EADCState::eNotInitialized;
     ADCConfiguration mConfiguration;
     ADCBuffer mBuffer;
-
-    bool baseInit();
 };
 
 }  // namespace scilla

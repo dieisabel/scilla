@@ -39,13 +39,10 @@ static void STM32ADC2_Init() {
     specificConfiguration.adcHalHandle = &hadc2;
     specificConfiguration.timHalHandle = &htim3;
 
-    ADCConfiguration baseConfiguration;
-
     (void)drivers::gSTM32ADC2Driver.setSpecificConfiguration(specificConfiguration);
-    (void)drivers::gSTM32ADC2Driver.setConfiguration(baseConfiguration);
     if (drivers::gSTM32ADC2Driver.init() == EADCStatus::eSuccess) {
-        trice(iD(3042), "error:[Drivers_Init]: STM32ADC2 driver is not initialized\n");
-    } else {
         trice(iD(7845), "info:[Drivers_Init]: STM32ADC2 driver is initialized\n");
+    } else {
+        trice(iD(3042), "error:[Drivers_Init]: STM32ADC2 driver is not initialized\n");
     }
 }

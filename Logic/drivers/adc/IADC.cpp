@@ -152,5 +152,3 @@ EADCStatus IADC::getBuffer(ADCBuffer& dest) {
     dest = mBuffer;
     return EADCStatus::eSuccess;
 }
-
-bool IADC::baseInit() { return mConfiguration.isValid(); }

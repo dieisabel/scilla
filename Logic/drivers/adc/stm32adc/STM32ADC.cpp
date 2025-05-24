@@ -40,8 +40,8 @@ void STM32ADC::getSpecificConfiguration(STM32ADCConfiguration& dest) {
 EADCStatus STM32ADC::applyConfiguration() { return EADCStatus::eNotImplemented; }
 
 EADCStatus STM32ADC::init() {
-    if (baseInit() != true) {
-        return EADCStatus::eError;
+    if (mSpecificConfiguration.isValid() == false) {
+        return EADCStatus::eErrorInvalidParameter;
     }
     if (HAL_ADC_GetState(mSpecificConfiguration.adcHalHandle) != HAL_ADC_STATE_READY) {
         return EADCStatus::eErrorInvalidParameter;
@@ -71,6 +71,9 @@ EADCStatus STM32ADC::start() {
     }
     if (mState == EADCState::eConverting) {
         return EADCStatus::eErrorStarted;
+    }
+    if (mConfiguration.isValid() == false) {
+        return EADCStatus::eErrorInvalidParameter;
     }
     if (mBuffer.isValid() == false) {
         return EADCStatus::eErrorInvalidParameter;
