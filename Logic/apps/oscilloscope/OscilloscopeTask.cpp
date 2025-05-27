@@ -57,9 +57,27 @@ ETaskStatus OscilloscopeTask::init(const TaskParameters& parameters) {
         trice(iD(7752), "err:[OscilloscopeTask]: invalid specific parameters\n");
         return ETaskStatus::eInvalidParameters;
     }
+    if (specificParameters->adcDriver->getState() != EADCState::eIdle) {
+        trice(iD(6549), "err:[OscilloscopeTask]: ADC driver is not initialized\n");
+        return ETaskStatus::eInvalidParameters;
+    }
 
     mSpecificParameters = *specificParameters;
     mParameters = parameters;
+    mAdcDriver = mSpecificParameters.adcDriver;
+
+    mAdcBuffer.size = kAdcBufferSize;
+    mAdcBuffer.ptr = mAdcBufferMemory;
+
+    mAdcConfiguration.channel = EADCChannel::eChannel1;
+    mAdcConfiguration.frequency = 1;
+    mAdcConfiguration.resolution = EADCResolution::e12Bit;
+    mAdcConfiguration.samplingTime = EADCSamplingTime::e12_5Cycles;
+
+    /* We already checked ADC driver state */
+    (void)mAdcDriver->setBuffer(mAdcBuffer);
+    (void)mAdcDriver->setConfiguration(mAdcConfiguration);
+
     return baseInit(Scilla_OscilloscopeTask_CRun);
 }
 
@@ -68,7 +86,12 @@ ETaskStatus OscilloscopeTask::destroy() { return baseDestroy(); }
 OscilloscopeTask::~OscilloscopeTask() { destroy(); }
 
 void OscilloscopeTask::_run(void* args) {
-    (void)args; /* Specific parameters are located in mSpecificParameters */
+    (void)args; /* Specific parameters are already located in mSpecificParameters */
+
+    if (mSpecificParameters.adcDriver->start() != EADCStatus::eSuccess) {
+        trice(iD(2971), "err:[OscilloscopeTask]: ADC is not started\n");
+        suspend();
+    }
 
     while (true) {
     }

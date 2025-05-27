@@ -28,7 +28,7 @@
 
 namespace scilla {
 
-using TADCSampleType = uint32_t;
+using TADCSampleType = uint16_t;
 struct ADCBuffer {
     TADCSampleType* ptr;
     uint32_t size;

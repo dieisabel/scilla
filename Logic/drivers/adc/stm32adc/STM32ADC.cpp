@@ -80,7 +80,8 @@ EADCStatus STM32ADC::start() {
     }
 
     HAL_StatusTypeDef status =
-        HAL_ADC_Start_DMA(mSpecificConfiguration.adcHalHandle, mBuffer.ptr, mBuffer.size);
+        HAL_ADC_Start_DMA(mSpecificConfiguration.adcHalHandle,
+                          reinterpret_cast<uint32_t*>(mBuffer.ptr), mBuffer.size);
     if (status != HAL_OK) {
         return EADCStatus::eError;
     }

@@ -24,6 +24,7 @@
 #ifndef SCILLA_LOGIC_APPS_OSCILLOSCOPE_OSCILLOSCOPE_TASK_H_
 #define SCILLA_LOGIC_APPS_OSCILLOSCOPE_OSCILLOSCOPE_TASK_H_
 
+#include "ADCBuffer.h"
 #include "FreeRTOS.h"
 #include "OscilloscopeTaskParameters.h"
 #include "task.h"
@@ -41,8 +42,13 @@ struct OscilloscopeTask : public ITask {
 
 private:
     static constexpr uint8_t kMinStackSize = 128;
-
     OscilloscopeTaskParameters mSpecificParameters;
+
+    static constexpr uint16_t kAdcBufferSize = 256;
+    IADC* mAdcDriver = nullptr;
+    ADCBuffer mAdcBuffer;
+    TADCSampleType mAdcBufferMemory[kAdcBufferSize] = {0};
+    ADCConfiguration mAdcConfiguration;
 };
 
 }  // namespace scilla
