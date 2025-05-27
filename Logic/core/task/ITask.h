@@ -51,6 +51,7 @@ struct ITask {
     ETaskStatus join();
     ETaskState getState();
     ETaskStatus getId(uint8_t& dest);
+    void suspend();
 
 protected:
     TaskParameters mParameters;

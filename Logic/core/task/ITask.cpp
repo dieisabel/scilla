@@ -74,6 +74,17 @@ ETaskStatus ITask::reset() {
     return ETaskStatus::eSuccess;
 }
 
+void ITask::suspend() {
+    if (mState == ETaskState::eNotInitialized) {
+        return;
+    }
+    if (mState == ETaskState::eSuspended) {
+        return;
+    }
+    mState = ETaskState::eSuspended;
+    vTaskSuspend(mRtosTaskHandle);
+}
+
 ETaskStatus ITask::start() {
     switch (mState) {
         case ETaskState::eSuspended:
