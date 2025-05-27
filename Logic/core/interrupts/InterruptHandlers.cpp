@@ -21,36 +21,19 @@
  * SOFTWARE.
  */
 
-#include "InitDrivers.h"
-
-#include "Drivers.h"
 #include "InterruptHandlers.h"
+
 #include "trice.h"
 
-using namespace scilla;
+extern "C" {
 
-static void STM32ADC2_Init();
+void Scilla_ADC2_HandleErrorInterrupt(ADC_HandleTypeDef* hadc) { (void)hadc; }
 
-STM32ADC drivers::gSTM32ADC2Driver;
+void Scilla_ADC2_HandleHalfConversionCompleteInterrupt(ADC_HandleTypeDef* hadc) {
+    (void)hadc;
+}
 
-void scilla::Drivers_Init() { STM32ADC2_Init(); }
-
-static void STM32ADC2_Init() {
-    HAL_ADC_RegisterCallback(&hadc2, HAL_ADC_CONVERSION_COMPLETE_CB_ID,
-                             Scilla_ADC2_HandleConversionCompleteInterrupt);
-    HAL_ADC_RegisterCallback(&hadc2, HAL_ADC_CONVERSION_HALF_CB_ID,
-                             Scilla_ADC2_HandleHalfConversionCompleteInterrupt);
-    HAL_ADC_RegisterCallback(&hadc2, HAL_ADC_ERROR_CB_ID,
-                             Scilla_ADC2_HandleErrorInterrupt);
-
-    STM32ADCConfiguration specificConfiguration;
-    specificConfiguration.adcHalHandle = &hadc2;
-    specificConfiguration.timHalHandle = &htim3;
-
-    (void)drivers::gSTM32ADC2Driver.setSpecificConfiguration(specificConfiguration);
-    if (drivers::gSTM32ADC2Driver.init() == EADCStatus::eSuccess) {
-        trice(iD(7845), "info:[Drivers_Init]: STM32ADC2 driver is initialized\n");
-    } else {
-        trice(iD(3042), "error:[Drivers_Init]: STM32ADC2 driver is not initialized\n");
-    }
+void Scilla_ADC2_HandleConversionCompleteInterrupt(ADC_HandleTypeDef* hadc) {
+    (void)hadc;
+}
 }
