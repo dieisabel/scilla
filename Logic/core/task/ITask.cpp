@@ -81,6 +81,8 @@ void ITask::suspend() {
     if (mState == ETaskState::eSuspended) {
         return;
     }
+    TRICE_S(id(1198), "info:[%s]: task state is changed to eSuspended\n",
+            mParameters.name);
     mState = ETaskState::eSuspended;
     vTaskSuspend(mRtosTaskHandle);
 }
@@ -108,7 +110,7 @@ ETaskStatus ITask::stop() {
         case ETaskState::eRunning:
             vTaskSuspend(mRtosTaskHandle);
             mState = ETaskState::eSuspended;
-            TRICE_S(id(1198), "info:[%s]: task state is changed to eSuspended\n",
+            TRICE_S(id(7537), "info:[%s]: task state is changed to eSuspended\n",
                     mParameters.name);
             return ETaskStatus::eSuccess;
         case ETaskState::eNotInitialized:

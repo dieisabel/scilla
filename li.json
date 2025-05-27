@@ -1,15 +1,31 @@
 {
+	"1173": {
+		"File": "InterruptHandlers.cpp",
+		"Line": 42
+	},
 	"1198": {
 		"File": "ITask.cpp",
-		"Line": 100
+		"Line": 84
+	},
+	"1338": {
+		"File": "InterruptHandlers.cpp",
+		"Line": 32
 	},
 	"2759": {
 		"File": "ITask.cpp",
 		"Line": 45
 	},
+	"2913": {
+		"File": "InterruptHandlers.cpp",
+		"Line": 37
+	},
+	"2971": {
+		"File": "OscilloscopeTask.cpp",
+		"Line": 92
+	},
 	"3042": {
 		"File": "InitDrivers.cpp",
-		"Line": 47
+		"Line": 54
 	},
 	"3441": {
 		"File": "ITask.cpp",
@@ -37,15 +53,23 @@
 	},
 	"5021": {
 		"File": "ITask.cpp",
-		"Line": 82
+		"Line": 94
 	},
 	"6008": {
 		"File": "ITask.cpp",
 		"Line": 50
 	},
+	"6549": {
+		"File": "OscilloscopeTask.cpp",
+		"Line": 61
+	},
 	"6927": {
 		"File": "ITask.cpp",
 		"Line": 32
+	},
+	"7537": {
+		"File": "ITask.cpp",
+		"Line": 112
 	},
 	"7752": {
 		"File": "OscilloscopeTask.cpp",
@@ -53,6 +77,6 @@
 	},
 	"7845": {
 		"File": "InitDrivers.cpp",
-		"Line": 49
+		"Line": 52
 	}
 }

@@ -1,11 +1,27 @@
 {
+	"1173": {
+		"Type": "trice",
+		"Strg": "info:[ADC2]: conversion is complete\\n"
+	},
 	"1198": {
 		"Type": "TRICE_S",
 		"Strg": "info:[%s]: task state is changed to eSuspended\\n"
 	},
+	"1338": {
+		"Type": "trice",
+		"Strg": "error:[ADC2]: error occured\\n"
+	},
 	"2759": {
 		"Type": "TRICE_S",
 		"Strg": "err:[%s]: task initialization error\\n"
+	},
+	"2913": {
+		"Type": "trice",
+		"Strg": "info:[ADC2]: half conversion is complete\\n"
+	},
+	"2971": {
+		"Type": "trice",
+		"Strg": "err:[OscilloscopeTask]: ADC is not started\\n"
 	},
 	"3042": {
 		"Type": "trice",
@@ -43,9 +59,17 @@
 		"Type": "TRICE_S",
 		"Strg": "info:[%s]: task is initialized\\n"
 	},
+	"6549": {
+		"Type": "trice",
+		"Strg": "err:[OscilloscopeTask]: ADC driver is not initialized\\n"
+	},
 	"6927": {
 		"Type": "trice",
 		"Strg": "err: invalid name\\n"
+	},
+	"7537": {
+		"Type": "TRICE_S",
+		"Strg": "info:[%s]: task state is changed to eSuspended\\n"
 	},
 	"7752": {
 		"Type": "trice",
