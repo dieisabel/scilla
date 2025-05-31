@@ -16,32 +16,25 @@ TRICE_BAUD = 115200
 
 .PHONY: build
 build:
-	@echo "Start generating build files"
 	$(CMAKE) $(CMAKE_DEFINES) -S . -B $(BUILD_DIR)
-	@echo "Start building"
 	$(CMAKE) --build $(BUILD_DIR) -j $(CMAKE_BUILD_JOBS)
 
 .PHONY: clean
 clean:
-	@echo "Cleaning"
 	rm -rf $(BUILD_DIR)/*
 
-.PHONY: openocd_server
-openocd_server:
-	@echo "Start running OpenOCD server"
+.PHONY: openocd_launch
+openocd_launch:
 	$(OPENOCD) $(OPENOCD_COMMON_FLAGS)
 
 .PHONY: flash
 flash:
-	@echo "Start flashing"
 	$(OPENOCD) $(OPENOCD_COMMON_FLAGS) -c "program $(EXECUTABLE) verify reset exit"
 
-.PHONY: run_trice
-insert_trice_ids:
-	@echo "Start running trice"
+.PHONY: trice_insert
+trice_insert:
 	$(TRICE) insert -src $(SRC_DIR)/
 
-.PHONY: launch_logger
-launch_logger:
-	@echo "Launching logger"
-	$(TRICE) log -p $(TRICE_PORT) -baud $(TRICE_BAUD)
+.PHONY: trice_launch
+trice_launch:
+	$(TRICE) log -p $(TRICE_PORT) -baud $(TRICE_BAUD) -prefix none -liFmt none
