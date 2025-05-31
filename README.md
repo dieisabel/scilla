@@ -11,7 +11,8 @@
         - [3.3.1 File templates](#331-file-templates)
         - [3.3.2 Auto formatting](#332-auto-formatting)
         - [3.3.3 Tasks](#333-tasks)
-- [4. License](#4-license)
+- [4. Similiar projects](#4-similiar-projects)
+- [5. License](#5-license)
 
 ## 1. Introduction
 
@@ -55,6 +56,10 @@ You can use VS Code for development. `.vscode/` directory contains all files rel
 
 VS Code features excellent feature called Tasks. They allows to run certain tools and commands using VS Code command prompt instead of going into terminal. Project features tasks for building, cleaning, flashing, etc. Full list of tasks is located in `.vscode/tasks.json`. Invoke them using `<Ctrl + Shift + P> -> Tasks: Run Task` and select task. For more information see official [webpage](https://code.visualstudio.com/docs/debugtest/tasks).
 
-## 4. License
+## 4. Similiar projects
+
+[EMBO](https://github.com/parezj/EMBO)
+
+## 5. License
 
 Project is licensed under [MIT license](LICENSE.md).
