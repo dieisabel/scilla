@@ -63,6 +63,8 @@ void Error_Handler(void);
 #define BSP_COM_TX_GPIO_Port GPIOA
 #define BSP_COM_RX_Pin GPIO_PIN_3
 #define BSP_COM_RX_GPIO_Port GPIOA
+#define ILED_Pin GPIO_PIN_6
+#define ILED_GPIO_Port GPIOA
 #define T_SWDIO_Pin GPIO_PIN_13
 #define T_SWDIO_GPIO_Port GPIOA
 #define T_SWCLK_Pin GPIO_PIN_14

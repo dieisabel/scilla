@@ -87,6 +87,7 @@ EADCStatus STM32ADC::start() {
     }
 
     status = HAL_TIM_Base_Start(mSpecificConfiguration.timHalHandle);
+    (void)HAL_TIM_PWM_Start(mSpecificConfiguration.timHalHandle, TIM_CHANNEL_1);
     if (status != HAL_OK) {
         (void)HAL_ADC_Stop_DMA(mSpecificConfiguration.adcHalHandle);
         return EADCStatus::eError;
