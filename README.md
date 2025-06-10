@@ -14,6 +14,7 @@
         - [3.3.4 Debugging](#334-debugging)
 - [4. Similiar projects](#4-similiar-projects)
 - [5. License](#5-license)
+- [6. Q/A](#6-qa)
 
 ## 1. Introduction
 
@@ -68,3 +69,9 @@ VS Code features excellent feature called Tasks. They allows to run certain tool
 ## 5. License
 
 Project is licensed under [MIT license](LICENSE.md).
+
+## 6. Q/A
+
+### Why dont generate BSP packet in CubeMX?
+
+**Answer:** for some unknown reason CubeMX 6.14.0 which I use generates BSP packet for NUCLEO-64 pin development board, but I have NUCLEO-32 pin board. Because of this LED feature don't work. To solve this I manually port BSP.
