@@ -11,6 +11,7 @@
         - [3.3.1 File templates](#331-file-templates)
         - [3.3.2 Auto formatting](#332-auto-formatting)
         - [3.3.3 Tasks](#333-tasks)
+        - [3.3.4 Debugging](#334-debugging)
 - [4. Similiar projects](#4-similiar-projects)
 - [5. License](#5-license)
 
@@ -55,6 +56,10 @@ You can use VS Code for development. `.vscode/` directory contains all files rel
 #### 3.3.3 Tasks
 
 VS Code features excellent feature called Tasks. They allows to run certain tools and commands using VS Code command prompt instead of going into terminal. Project features tasks for building, cleaning, flashing, etc. Full list of tasks is located in `.vscode/tasks.json`. Invoke them using `<Ctrl + Shift + P> -> Tasks: Run Task` and select task. For more information see official [webpage](https://code.visualstudio.com/docs/debugtest/tasks).
+
+#### 3.3.4 Debugging
+
+`marus25.cortex-debug` extension gives step-by-step firmware debugging on target hardware. It uses tools like `openocd` or similiar. For debugging project has a VS Code debug configuration called `Cortex Debug` that utilizes this extension. Also using extension we can gain access to GDB server using `Debug Console` tab.
 
 ## 4. Similiar projects
 
