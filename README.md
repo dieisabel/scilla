@@ -66,6 +66,8 @@ VS Code features excellent feature called Tasks. They allows to run certain tool
 
 [EMBO](https://github.com/parezj/EMBO)
 
+[ScopeFun](https://www.scopefun.com/)
+
 ## 5. License
 
 Project is licensed under [MIT license](LICENSE.md).
